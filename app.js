@@ -12,7 +12,7 @@ function printLocation(pos) {
     var lat = pos.coords.latitude.toFixed(2);
     var long = pos.coords.longitude.toFixed(2);
     document.getElementById("location").innerHTML = 
-            `Your position is lat: ${lat} and long: ${long}`;
+            `Your position is lat: ${lat}° and long: ${long}°`;
 }
 
 function handleError(error) {

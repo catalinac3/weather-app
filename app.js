@@ -4,6 +4,7 @@ var date = `${dateToday.getDate()}/${(dateToday.getMonth()+1)}/${dateToday.getFu
 
 // en-US: uses 12-hour time with AM/PM
 var time = dateToday.toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
+
 document.getElementById("date-display").innerHTML = `The date today is ${date} and the time ${time}`;
 
 // HTML Geolocation API on your browser - no web request!
@@ -22,3 +23,4 @@ function handleError(error) {
 }
 
 navigator.geolocation.getCurrentPosition(printLocation, handleError);
+

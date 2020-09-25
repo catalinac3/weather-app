@@ -1,11 +1,11 @@
 // The date and time is display to check connectivity with the html file.
-var dateToday = new Date();
-var date = `${dateToday.getDate()}/${
+const dateToday = new Date();
+const date = `${dateToday.getDate()}/${
     dateToday.getMonth() + 1
 }/${dateToday.getFullYear()}`;
 
 // en-US: uses 12-hour time with AM/PM
-var time = dateToday.toLocaleTimeString('en-US', {
+const time = dateToday.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
 });
@@ -45,12 +45,10 @@ function getTemperature(latitude, longitude) {
     //the fetch() method instructs the web browsers to send a request to a URL.
     //less than60 calls/min
     fetch(api)
-        .then((response) => {
+        .then ((response) => response.json())
             // data --> Promise object represents the eventual completion (or failure)
             // of an asynchronous operation and its resulting value.
             // console.log(response);
-            return response.json();
-        })
         .then((data) => {
             console.log('the data is:', data);
             document.getElementById('temperature').innerHTML = `The 

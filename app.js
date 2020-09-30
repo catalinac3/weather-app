@@ -48,7 +48,7 @@ function getTemperature(latitude, longitude) {
       console.log("the data is:", data);
       document.getElementById(
         "temperature"
-      ).innerHTML = `${data.main.temp.toFixed(2)}°C`;
+      ).innerHTML = `${data.main.temp.toFixed(1)}°C`;
     })
     .catch((error) => {
       // handles errors
@@ -56,16 +56,4 @@ function getTemperature(latitude, longitude) {
     });
 }
 
-//data.main.temp
-//data.main.feels_like
-//data.main.humidity
-//data.sys.sunrise -- unix
-//data.sys.sunset
-//data.sys.country -- code
-//data.name -- city name  Altstadt?
-//maybe data.id -- city ID is better
-//rain.1h -- volume mm
-//data.weather.main
-//data.0.weather.description
-//data.wind.speed
-//data.wind.degree
+

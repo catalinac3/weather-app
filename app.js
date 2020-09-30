@@ -1,3 +1,23 @@
+const dateDisplay = document.getElementById("date-display");
+const temperature = document.getElementById("temperature");
+const feelTemperature = document.getElementById("feels-like");
+const humidityDisplay = document.getElementById("humidity");
+const sunriseTime = document.getElementById("sunrise-time");
+const sunsetTime = document.getElementById("sunset-time");
+const countryDisplay = document.getElementById("country");
+const city = document.getElementById("city");
+const rainVolume = document.getElementById("rain-volume");
+const weatherDescription = document.getElementById("weather-description");
+const windSpeed = document.getElementById("wind-speed");
+
+function timeConversion(timeStamp) {
+  let timeObj = new Date(timeStamp * 1000);
+  return timeObj.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
 // Getting current date and time.
 const dateToday = new Date();
 const date = `${dateToday.getDate()}/${
@@ -5,14 +25,9 @@ const date = `${dateToday.getDate()}/${
 }/${dateToday.getFullYear()}`;
 
 // en-US: uses 12-hour time with AM/PM
-const time = dateToday.toLocaleTimeString("en-US", {
-  hour: "2-digit",
-  minute: "2-digit",
-});
+const time = timeConversion(dateToday);
 
-document.getElementById(
-  "date-display"
-).innerHTML = `Today's date: ${date}, time: ${time}`;
+dateDisplay.innerHTML = `Today's date: ${date}, time: ${time}`;
 
 // HTML Geolocation API on your browser - no web request!
 // gettting location of the user's computer: latitude and longitude
@@ -46,14 +61,33 @@ function getTemperature(latitude, longitude) {
     // console.log(response);
     .then((data) => {
       console.log("the data is:", data);
-      document.getElementById(
-        "temperature"
-      ).innerHTML = `${data.main.temp.toFixed(1)}°C`;
+      // when the object has key, value pairs, like data.main
+      // properties can be store: const {property} = object
+      // for easy access, long form: data.main.property
+      // it is call destructuring.
+      const { temp, feels_like, humidity } = data.main;
+      temperature.innerHTML = `${temp.toFixed(1)}°C`;
+      feelTemperature.innerHTML = ` ${feels_like}°C`;
+      humidityDisplay.innerHTML = ` ${humidity} %`;
+
+      const { sunrise, sunset, country } = data.sys;
+      sunriseTime.innerHTML = timeConversion(sunrise);
+      sunsetTime.innerHTML = timeConversion(sunset);
+      
+      countryDisplay.innerHTML = country;
+      city.innerHTML = data.name;
+      windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;
+      weatherDescription.innerHTML = data.weather[0].description;
+      // when the weather is not rainy data.rain doesn't exits 
+      if (data.rain) {
+        rainVolume.innerHTML = data.rain.rain["1h"];
+      } else {
+        rainVolume.innerHTML = "no rain";
+      }
     })
     .catch((error) => {
       // handles errors
       console.warn(`error: ${error.message}, weather API`);
     });
 }
-
 

@@ -10,14 +10,6 @@ const rainVolume = document.getElementById("rain-volume");
 const weatherDescription = document.getElementById("weather-description");
 const windSpeed = document.getElementById("wind-speed");
 
-function timeConversion(timeStamp) {
-  let timeObj = new Date(timeStamp * 1000);
-  return timeObj.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
 // Getting current date and time.
 const dateToday = new Date();
 const date = `${dateToday.getDate()}/${
@@ -25,7 +17,10 @@ const date = `${dateToday.getDate()}/${
 }/${dateToday.getFullYear()}`;
 
 // en-US: uses 12-hour time with AM/PM
-const time = timeConversion(dateToday);
+const time = dateToday.toLocaleTimeString("en-US", {
+  hour: "2-digit",
+  minute: "2-digit",
+});
 
 dateDisplay.innerHTML = `Today's date: ${date}, time: ${time}`;
 
@@ -73,12 +68,12 @@ function getTemperature(latitude, longitude) {
       const { sunrise, sunset, country } = data.sys;
       sunriseTime.innerHTML = timeConversion(sunrise);
       sunsetTime.innerHTML = timeConversion(sunset);
-      
+
       countryDisplay.innerHTML = country;
       city.innerHTML = data.name;
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;
       weatherDescription.innerHTML = data.weather[0].description;
-      // when the weather is not rainy data.rain doesn't exits 
+      // when the weather is not rainy data.rain doesn't exits
       if (data.rain) {
         rainVolume.innerHTML = data.rain.rain["1h"];
       } else {
@@ -90,4 +85,10 @@ function getTemperature(latitude, longitude) {
       console.warn(`error: ${error.message}, weather API`);
     });
 }
-
+function timeConversion(timeStamp) {
+  let timeObj = new Date(timeStamp * 1000);
+  return timeObj.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}

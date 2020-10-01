@@ -69,7 +69,7 @@ function getTemperature(latitude, longitude) {
       sunriseTime.innerHTML = timeConversion(sunrise);
       sunsetTime.innerHTML = timeConversion(sunset);
 
-      countryDisplay.innerHTML = country;
+      countryDisplay.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;
       weatherDescription.innerHTML = data.weather[0].description;

@@ -5,8 +5,8 @@ https://catalinac3.github.io/weather-app/.
 
 ### Weather data:
 
-The data for this web page is collected from the OpenWeather API - Current weather and forecast - free plan,
-when the web page is loaded. The data is received in a json file.
+The data for this web page is collected from the OpenWeather API - Current weather and forecast - free plan. <br>
+When the web page is loaded. The data is received in a json file.
 
 | Data                | API Response                     | units (API response)          |
 | ------------------- | -------------------------------- | ----------------------------- |

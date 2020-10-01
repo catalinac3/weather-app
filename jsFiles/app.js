@@ -74,11 +74,7 @@ function getTemperature(latitude, longitude) {
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;
       weatherDescription.innerHTML = data.weather[0].description;
       // when the weather is not rainy data.rain doesn't exits
-      if (data.rain) {
-        rainVolume.innerHTML = data.rain.rain["1h"];
-      } else {
-        rainVolume.innerHTML = "no rain";
-      }
+      rainVolume.innerHTML = (data.rain) ?  data.rain.rain["1h"]:"no rain"
     })
     .catch((error) => {
       // handles errors

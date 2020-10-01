@@ -247,7 +247,5 @@ const isoCountries = {
 };
 
 function countryCodeConversion(countryCode) {
-  // .has returns a boolean
-  // .get gets a value in a map
   return countryCode in isoCountries ? isoCountries[countryCode] : countryCode;
 }

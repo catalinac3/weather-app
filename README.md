@@ -23,6 +23,6 @@ When the web page is loaded. The data is received in a json file.
 
 https://openweathermap.org/ <br><br>
 <sup>1</sup> The unix time is the number of seconds that have elapsed since the Unix epoch; the Unix epoch is 00:00:00 UTC on 1 January 1970. https://en.wikipedia.org/wiki/Unix_time <br>
-<sup>2</sup> Rain gauges measure the precipitation in millimetres in height collected on an square meter during a period of time. https://en.wikipedia.org/wiki/Rain_gauge <br><br>
+<sup>2</sup> Rain gauges measure the precipitation in millimetres in height collected on an square meter during a period of time. https://en.wikipedia.org/wiki/Rain_gauge <br>
 
 The object isoCountries, with country names and codes was copied from https://gist.github.com/maephisto/9228207

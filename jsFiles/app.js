@@ -77,10 +77,12 @@ function getTemperature(latitude, longitude) {
 
       const { description, icon } = data.weather[0];
       weatherDescription.innerHTML = description;
-      weatherIcon.src = `https://www.openweathermap.org/img/w/${icon}.png`
+      weatherIcon.src = `https://www.openweathermap.org/img/w/${icon}.png`;
       // when the weather is not rainy data.rain doesn't exits
       rainVolume.innerHTML = data.rain ? `${data.rain["1h"]}mm` : "no rain";
-      rainIcon.className = data.rain ? "fas fa-umbrella" : "fas fa-umbrella-beach";
+      rainIcon.className = data.rain
+        ? "fas fa-umbrella"
+        : "fas fa-umbrella-beach";
     })
     .catch((error) => {
       // handles errors

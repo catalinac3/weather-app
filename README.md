@@ -19,7 +19,7 @@ When the web page is loaded. The data is received in a json file.
 | city name           | data.name                   | string                      |
 | precipitation       | data.rain.1h                | mm (last hour) <sup>2</sup> |
 | weather description | data.weather[0].description | string                      |
-| icon id             | data.weather[0].icon        | id                          |
+| icon                | data.weather[0].icon        | name png file               |
 | Wind speed          | data.wind.speed             | m/s                         |
 
 https://openweathermap.org/ <br><br>

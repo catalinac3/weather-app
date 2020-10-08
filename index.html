@@ -16,12 +16,23 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
+    <!-- importing font awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles.css" />
 
-    <script src="jsFiles/countries_code.js" type="text/javascript" defer></script>
+    <script
+      src="jsFiles/countries_code.js"
+      type="text/javascript"
+      defer
+    ></script>
     <script src="jsFiles/app.js" type="text/javascript" defer></script>
-    
   </head>
+  
   <body>
     <main>
       <div class="card bg-light">
@@ -39,7 +50,7 @@
               <div class="mb-3 mt-3">
                 <h2>
                   <span id="temperature" class="main-temp"> --- </span>
-                  <!-- here goes icon indicating the weather of the day-->
+                  <img id="weather-icon"> 
                 </h2>
               </div>
               <div class="mb-3">
@@ -49,23 +60,12 @@
             </div>
             <div class="col-4">
               <div class="mb-5 mt-4">
-                <svg
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-droplet-fill"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"
-                  />
-                </svg>
                 <span id="rain-volume"> --- </span>
+                <i id="rain-icon" aria-hidden="true"></i>
               </div>
               <div class="mb-5">
                 <span>Wind:</span><span id="wind-speed"> --- </span>
+
               </div>
               <div class="mb-5">
                 <span>Hr:</span><span id="humidity"> --- </span>

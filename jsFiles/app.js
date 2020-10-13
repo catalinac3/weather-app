@@ -36,7 +36,6 @@ function getLocation(pos) {
 
 function handleError(error) {
   alertError(error);
-  console.warn(`${error.message}, error: ${error.code}`);
 }
 
 navigator.geolocation.getCurrentPosition(getLocation, handleError);
@@ -87,7 +86,6 @@ function getTemperature(latitude, longitude) {
     .catch((error) => {
       // handles errors
       alertError(error);
-      console.warn(`${error.message}, error: ${error.code}`);
     });
 }
 function timeConversion(timeStamp) {
@@ -101,6 +99,6 @@ function timeConversion(timeStamp) {
 }
 
 // handles the alert pop up message for catch and handle error functions
-function alertError(error){
-  return alert(error.message)
+function alertError(error) {
+  return alert(error.message);
 }

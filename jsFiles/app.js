@@ -50,6 +50,10 @@ function getWeatherData(latitude, longitude) {
   const api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
   //the fetch() method instructs the web browsers to send a request to a URL.
   //less than60 calls/min
+  fetchData(api);
+}
+
+function fetchData(api){
   fetch(api)
     .then((response) => response.json())
     // data --> Promise object represents the eventual completion (or failure)

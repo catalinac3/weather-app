@@ -35,8 +35,8 @@ function getLocation(pos) {
 }
 
 function handleError(error) {
-  alert(`Your position could not be found, error: ${error.message}`);
-  console.warn(`Error displaying position, error: ${error.code}`);
+  alertError(error);
+  console.warn(`${error.message}, error: ${error.code}`);
 }
 
 navigator.geolocation.getCurrentPosition(getLocation, handleError);
@@ -86,7 +86,8 @@ function getTemperature(latitude, longitude) {
     })
     .catch((error) => {
       // handles errors
-      console.warn(`error: ${error.message}, weather API`);
+      alertError(error);
+      console.warn(`${error.message}, error: ${error.code}`);
     });
 }
 function timeConversion(timeStamp) {
@@ -97,4 +98,9 @@ function timeConversion(timeStamp) {
     hour: "2-digit",
     minute: "2-digit",
   });
+}
+
+// handles the alert pop up message for catch and handle error functions
+function alertError(error){
+  return alert(error.message)
 }

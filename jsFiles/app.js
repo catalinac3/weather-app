@@ -9,6 +9,8 @@ const city = document.getElementById("city");
 const rainVolume = document.getElementById("rain-volume");
 const weatherDescription = document.getElementById("weather-description");
 const windSpeed = document.getElementById("wind-speed");
+const weatherIcon = document.getElementById("weather-icon");
+const rainIcon = document.getElementById("rain-icon");
 
 // Getting current date and time.
 const dateToday = new Date();
@@ -33,8 +35,7 @@ function getLocation(pos) {
 }
 
 function handleError(error) {
-  alert(`Your position could not be found, error: ${error.message}`);
-  console.warn(`Error displaying position, error: ${error.code}`);
+  alertError(error);
 }
 
 navigator.geolocation.getCurrentPosition(getLocation, handleError);
@@ -72,19 +73,31 @@ function getTemperature(latitude, longitude) {
       countryDisplay.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;
-      weatherDescription.innerHTML = data.weather[0].description;
+
+      const { description, icon } = data.weather[0];
+      weatherDescription.innerHTML = description;
+      weatherIcon.src = `https://www.openweathermap.org/img/w/${icon}.png`;
       // when the weather is not rainy data.rain doesn't exits
-      rainVolume.innerHTML = (data.rain) ?  data.rain.rain["1h"]:"no rain"
+      rainVolume.innerHTML = data.rain ? `${data.rain["1h"]}mm` : "no rain";
+      rainIcon.className = data.rain
+        ? "fas fa-umbrella"
+        : "fas fa-umbrella-beach";
     })
     .catch((error) => {
-      // handles errors
-      console.warn(`error: ${error.message}, weather API`);
+      alertError(error);
     });
 }
 function timeConversion(timeStamp) {
+  // The multiplication *1000 is because the timeStamp is in second
+  // and the Date expects miliseconds
   let timeObj = new Date(timeStamp * 1000);
   return timeObj.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
   });
+}
+
+// handles the alert pop up message for catch and handle error functions
+function alertError(error) {
+  alert(error.message);
 }

@@ -245,8 +245,9 @@ const isoCountries = {
   ZM: "Zambia",
   ZW: "Zimbabwe",
 };
-// This function converts the code of a country to the country name 
+// This function converts the code of a country to the country name
 // if it doesn't exist, it returns the code itself
 function countryCodeConversion(countryCode) {
+  // bracket notation is needed because countryCode is a variable
   return countryCode in isoCountries ? isoCountries[countryCode] : countryCode;
 }

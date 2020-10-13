@@ -84,7 +84,6 @@ function getTemperature(latitude, longitude) {
         : "fas fa-umbrella-beach";
     })
     .catch((error) => {
-      // handles errors
       alertError(error);
     });
 }
@@ -100,5 +99,5 @@ function timeConversion(timeStamp) {
 
 // handles the alert pop up message for catch and handle error functions
 function alertError(error) {
-  return alert(error.message);
+  alert(error.message);
 }

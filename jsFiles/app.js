@@ -31,7 +31,7 @@ dateDisplay.innerHTML = `Today's date: ${date}, time: ${time}`;
 function getLocation(pos) {
   const lat = pos.coords.latitude.toFixed(2);
   const long = pos.coords.longitude.toFixed(2);
-  getTemperature(lat, long);
+  getWeatherData(lat, long);
 }
 
 function handleError(error) {
@@ -46,7 +46,7 @@ navigator.geolocation.getCurrentPosition(getLocation, handleError);
 
 const KEY = "3137461397c70af0e13c77fda97afa11";
 
-function getTemperature(latitude, longitude) {
+function getWeatherData(latitude, longitude) {
   const api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
   //the fetch() method instructs the web browsers to send a request to a URL.
   //less than60 calls/min

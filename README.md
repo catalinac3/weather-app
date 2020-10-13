@@ -31,7 +31,7 @@ The object isoCountries, with country names and codes was copied from https://gi
 The main weather icon in the app was made by amCharts https://www.amcharts.com/free-animated-svg-weather-icons/, except for the atmosphere icon, that comes from open weather api.
 https://openweathermap.org/weather-conditions.
 
-Icons organization on Open Weather API - Animated icons downloaded from amCharts:
+### Icons organization on Open Weather API - Animated icons downloaded from amCharts:
 
 | icons      | codes (id)         | Description                    | Animated icons (amCharts)   |
 | ---------- | ------------------ | ------------------------------ | --------------------------- |
@@ -45,9 +45,10 @@ Icons organization on Open Weather API - Animated icons downloaded from amCharts
 | 03d == 03n | 802                | scatter clouds                 | cloudy-day-3,cloudy-night-3 |
 | 04d == 04n | 803                | broken clouds, overcast clouds | cloudy-day-3,cloudy-night-3 |
 
-icons id i.e. 11d, 11n => d=day, n=night.
+<br>
+In icons i.e. 11d, 11n, d=day, n=night.
 
-codes include start number and end number.
+Codes include start number and end number.
 
-drizzle: light rain, almost unperceptible. https://ownyourweather.com/understanding-weather-symbols/
-shower rain: shorter duration of rains
+Drizzle: light rain, almost unperceptible. https://ownyourweather.com/understanding-weather-symbols/ <br>
+Shower rain: shorter duration of rains.

@@ -22,5 +22,5 @@ const iconEquivalence = {
 function getIcon(icon) {
   return icon in iconEquivalence
     ? `./img/animated_icons/${iconEquivalence[icon]}.svg`
-    : "https://www.openweathermap.org/img/w/${icon}.png";
+    : `https://www.openweathermap.org/img/w/${icon}.png`;
 }

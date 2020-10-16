@@ -27,3 +27,28 @@ https://openweathermap.org/ <br><br>
 <sup>2</sup> Rain gauges measure the precipitation in millimetres in height collected on an square meter during a period of time. https://en.wikipedia.org/wiki/Rain_gauge <br>
 
 The object isoCountries, with country names and codes was copied from https://gist.github.com/maephisto/9228207
+
+The main weather icon in the app was made by amCharts https://www.amcharts.com/free-animated-svg-weather-icons/, except for the atmosphere icon, that comes from open weather api.
+https://openweathermap.org/weather-conditions.
+
+### Icons organization on Open Weather API - Animated icons downloaded from amCharts:
+
+| icons      | codes (id)         | Description                    | Animated icons (amCharts)   |
+| ---------- | ------------------ | ------------------------------ | --------------------------- |
+| 11d == 11n | 200 -232           | thunderstorm                   | thunder                     |
+| 09d == 09n | 300-321 && 520-531 | drizzle, shower rain           | rainy-7                     |
+| 10d != 10n | 500-504            | rain                           | rainy-3 (d), rainy-5 (n)    |
+| 13d = 13n  | 511 & (600-622)    | freezing rain, snow            | snowy-3 (d), snowy-5 (n)    |
+| 50d == 50n | 701-781            | atmosphere                     | use open weather            |
+| 01d != 01n | 800                | clear                          | day, night                  |
+| 02d != 02n | 801                | few clouds                     | cloudy-day-3,cloudy-night-3 |
+| 03d == 03n | 802                | scatter clouds                 | cloudy-day-3,cloudy-night-3 |
+| 04d == 04n | 803                | broken clouds, overcast clouds | cloudy-day-3,cloudy-night-3 |
+
+<br>
+In icons i.e. 11d, 11n, d=day, n=night.
+
+Codes include start number and end number.
+
+Drizzle: light rain, almost unperceptible. https://ownyourweather.com/understanding-weather-symbols/ <br>
+Shower rain: shorter duration of rains.

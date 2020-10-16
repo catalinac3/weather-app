@@ -1,3 +1,7 @@
+/*
+colors used: 
+Dark moderate red (terra cotta): #a45146 */
+
 body {
   background: url("./img/background_main.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -8,8 +12,11 @@ body {
 }
 
 h1 {
-  color: #403288;
+  color: #a45146;
   font-family: "Kalam", cursive;
+}
+.card-body {
+  background: url(img/house1.svg) no-repeat;
 }
 .card {
   max-width: 500px;

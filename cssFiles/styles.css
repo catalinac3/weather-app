@@ -20,7 +20,9 @@ h1 {
   font-family: "Kalam", cursive;
 }
 .card-body {
-  background: url(../img/house1.svg) no-repeat;
+  background-image: url(../img/house.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .card {
   max-width: 500px;

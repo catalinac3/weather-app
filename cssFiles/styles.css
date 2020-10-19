@@ -1,9 +1,14 @@
 /*
-colors used: 
-Dark moderate red (terra cotta): #a45146 */
+colors used for the house: 
+Dark moderate red (terra cotta): #a45146 
+Dark green: #2e545b
+Dark rosa: #e49494
+Ligth rosa: #d4a9a9
+*/
+
 
 body {
-  background: url("./img/background_main.jpg") no-repeat center center fixed;
+  background: url("../img/background_main.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -16,7 +21,7 @@ h1 {
   font-family: "Kalam", cursive;
 }
 .card-body {
-  background: url(img/house1.svg) no-repeat;
+  background: url(../img/house1.svg) no-repeat;
 }
 .card {
   max-width: 500px;

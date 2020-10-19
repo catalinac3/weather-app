@@ -27,7 +27,7 @@ const skyColors = {
 };
 
 let cardBody = document.querySelector(".card-body");
-let house = "url(img/house.png) no-repeat cover";
+let house = "url(img/house.png)";
 
 // this function should change the color of the sky according to
 // the actual time, sunset and sunrise time.
@@ -49,7 +49,8 @@ function skyColor(sunrise, sunset) {
   // around sunset: 14, 15, 16, 17 - sunset , 18, 19 20, 21
   console.log(timeInMinutes, sunriseInMinutes, sunsetInMinutes);
 
-  cardBody.style.background = `${house}, linear-gradient(to bottom, #163C52 0%,#4F4F47 30%,#C5752D 60%,#B7490F 80%, #2F1107 100%)`;
+  cardBody.style.backgroundImage =
+    `${house}, linear-gradient(to bottom, #163C52 0%,#4F4F47 30%,#C5752D 60%,#B7490F 80%, #2F1107 100%)`;
 }
 
 //This function converts a time stamp into and array that contains the hr and min.

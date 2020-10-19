@@ -73,6 +73,7 @@ function fetchData(api){
       const { sunrise, sunset, country } = data.sys;
       sunriseTime.innerHTML = timeConversion(sunrise);
       sunsetTime.innerHTML = timeConversion(sunset);
+      skyColor(sunrise, sunset);
 
       countryDisplay.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;

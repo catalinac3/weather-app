@@ -6,7 +6,6 @@ Dark rosa: #e49494
 Ligth rosa: #d4a9a9
 */
 
-
 body {
   background: url("../img/background_main.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -33,4 +32,7 @@ h1 {
 }
 .main-temp {
   padding-right: 1px;
+}
+#weather-icon {
+  filter: sepia(50%);
 }

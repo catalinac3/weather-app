@@ -27,7 +27,7 @@ const skyColors = {
 };
 
 let cardBody = document.querySelector(".card-body");
-let house = "url(img/house1.svg) no-repeat";
+let house = "url(img/house.png) no-repeat cover";
 
 // this function should change the color of the sky according to
 // the actual time, sunset and sunrise time.

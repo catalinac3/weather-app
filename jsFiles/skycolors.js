@@ -26,8 +26,7 @@ const skyColors = {
   23: "linear-gradient(to bottom, #00000c 80%,#150800 100%)",
 };
 
-let cardBody = document.querySelector(".card-body");
-let house = "url(img/house.png)";
+const cardBody = document.querySelector(".card-body");
 
 // this function should change the color of the sky according to
 // the actual time, sunset and sunrise time.
@@ -40,17 +39,67 @@ function skyColor(sunrise, sunset) {
   let sunriseInMinutes = timeConversion2(sunrise);
   let sunsetInMinutes = timeConversion2(sunset);
 
-  if (timeInMinutes < sunriseInMinutes - 60) {
-    console.log("it is night");
-  }
-  // night: 22, 23, 0, 1, 2
+  let startSunrise = sunriseInMinutes - 120
+  let startSunset = sunsetInMinutes - 60
+  let endSunset = sunsetInMinutes + 120
+  // night:  0, 1, 2
   // around sunrise: 3, 4, 5, 6, 7 - sunrise, 8
   // day: 9, 10, 11, 12, 13
   // around sunset: 14, 15, 16, 17 - sunset , 18, 19 20, 21
-  console.log(timeInMinutes, sunriseInMinutes, sunsetInMinutes);
-
-  cardBody.style.backgroundImage =
-    `${house}, linear-gradient(to bottom, #163C52 0%,#4F4F47 30%,#C5752D 60%,#B7490F 80%, #2F1107 100%)`;
+  // night: 22, 23
+  if (timeInMinutes < startSunrise/3) {
+    cardBody.style.backgroundImage = skyColors[0];
+  } else if (timeInMinutes < startSunrise/3*2){
+    cardBody.style.backgroundImage = skyColors[1];
+  } else if (timeInMinutes < startSunrise){
+    cardBody.style.backgroundImage = skyColors[2];
+    // until here is night
+  } else if (timeInMinutes < (startSunrise + (sunriseInMinutes - startSunrise)/6)) {
+    cardBody.style.backgroundImage = skyColors[3];
+  } else if (timeInMinutes < (startSunrise + (sunriseInMinutes - startSunrise)/6*2)){
+    cardBody.style.backgroundImage = skyColors[4];
+  }else if (timeInMinutes < (startSunrise + (sunriseInMinutes - startSunrise)/6*3)){
+    cardBody.style.backgroundImage = skyColors[5];
+  }else if (timeInMinutes < (startSunrise + (sunriseInMinutes - startSunrise)/6*4)){
+    cardBody.style.backgroundImage = skyColors[6];
+  }else if (timeInMinutes < (startSunrise + (sunriseInMinutes - startSunrise)/6*5)){
+    cardBody.style.backgroundImage = skyColors[7];
+  }else if (timeInMinutes < sunriseInMinutes){
+    cardBody.style.backgroundImage = skyColors[8];
+    // until here is sunrise
+  } else if (timeInMinutes < sunriseInMinutes + (startSunset-sunriseInMinutes)/5){
+    cardBody.style.backgroundImage = skyColors[9];
+  } else if (timeInMinutes < sunriseInMinutes + (startSunset-sunriseInMinutes)/5*2){
+    cardBody.style.backgroundImage = skyColors[10];
+  } else if (timeInMinutes < sunriseInMinutes + (startSunset-sunriseInMinutes)/5*3){
+    cardBody.style.backgroundImage = skyColors[11];
+  } else if (timeInMinutes < sunriseInMinutes + (startSunset-sunriseInMinutes)/5*4){
+    cardBody.style.backgroundImage = skyColors[12];
+  } else if (timeInMinutes < startSunset){
+    cardBody.style.backgroundImage = skyColors[13];
+   // until here is day
+  } else if (timeInMinutes < startSunset + (endSunset-startSunset)/8){
+    cardBody.style.backgroundImage = skyColors[14];
+  } else if (timeInMinutes < startSunset + (endSunset-startSunset)/8*2){
+    cardBody.style.backgroundImage = skyColors[15];
+  } else if (timeInMinutes < startSunset + (endSunset-startSunset)/8*3){
+    cardBody.style.backgroundImage = skyColors[16];
+  } else if (timeInMinutes < startSunset + (endSunset-startSunset)/8*4){
+    cardBody.style.backgroundImage = skyColors[17];
+  } else if (timeInMinutes < startSunset + (endSunset-startSunset)/8*5){
+    cardBody.style.backgroundImage = skyColors[18];
+  } else if (timeInMinutes < startSunset + (endSunset-startSunset)/8*6){
+    cardBody.style.backgroundImage = skyColors[19];
+  } else if (timeInMinutes < startSunset + (endSunset-startSunset)/8*7){
+    cardBody.style.backgroundImage = skyColors[20];
+  }  else if (timeInMinutes < endSunset){
+    cardBody.style.backgroundImage = skyColors[21];
+    // until here is sunset
+  } else if (timeInMinutes < endSunset + (1440-endSunset)/2){
+    cardBody.style.backgroundImage = skyColors[22];
+  } else if (timeInMinutes < 1440){
+    cardBody.style.backgroundImage = skyColors[23];
+  }
 }
 
 //This function converts a time stamp into and array that contains the hr and min.

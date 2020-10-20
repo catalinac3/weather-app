@@ -4,6 +4,9 @@ Dark moderate red (terra cotta): #a45146
 Dark green: #2e545b
 Dark rosa: #e49494
 Ligth rosa: #d4a9a9
+
+other colors:
+Light gray: #F8F9FA
 */
 
 body {
@@ -20,6 +23,7 @@ h1 {
 .card {
   max-width: 500px;
   margin: 40px auto;
+  /* background-color: blue; */
 }
 .card-body {
   position: relative;

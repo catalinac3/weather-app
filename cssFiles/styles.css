@@ -9,9 +9,6 @@ Ligth rosa: #d4a9a9
 body {
   background: url("../img/background_main.jpg") no-repeat center center fixed;
   background-size: cover;
-}
-
-body {
   font-family: "Raleway", sans-serif;
 }
 
@@ -19,22 +16,31 @@ h1 {
   color: #a45146;
   font-family: "Kalam", cursive;
 }
-.card-body {
-  background-image: url(../img/house.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-}
+
 .card {
   max-width: 500px;
   margin: 40px auto;
 }
+.card-body {
+  position: relative;
+}
+
 .card-footer span {
   display: inline-block;
   margin: 0 10px;
 }
+
 .main-temp {
   padding-right: 1px;
 }
+
+#house-img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 330px;
+}
+
 #weather-icon {
   filter: sepia(50%);
 }

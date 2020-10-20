@@ -46,23 +46,18 @@
         <div class="card-body">
           <div class="row">
             <div class="col-7">
-              <div class="input-group">
+              <form id="city-search-form" class="form-inline">
+                <!-- class="form-inline, place the elements in one line" -->
                 <input
                   id="city-input"
-                  class="form-control"
                   type="text"
+                  class="form-control"
                   placeholder="city"
                 />
-                <div class="input-group-append">
-                  <button
-                    id="search-weather"
-                    class="btn btn-outline-secondary"
-                    type="submit"
-                  >
-                    <i class="fas fa-search-location"></i>
-                  </button>
-                </div>
-              </div>
+                <button class="btn btn-outline-secondary" type="submit">
+                  <i class="fas fa-search-location"></i>
+                </button>
+              </form>
             </div>
             <div class="col-5"></div>
           </div>

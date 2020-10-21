@@ -1,3 +1,8 @@
+// TO DO, once the time is fixed
+// arrange that the house is change to normal, when here in munich is dark
+// and you want to go to a placer where there is sun, the hause and letters 
+// in the card are visible
+
 //sky colors from https://codepen.io/billyysea/pen/whjbK
 const skyColors = {
   0: "#00000c",
@@ -31,6 +36,7 @@ const card = document.querySelector(".card");
 const cardHeader = document.querySelector(".card-header");
 const cardHeading = document.querySelector("h1");
 const cardFooter = document.querySelector(".card-footer");
+const imageHouse = document.querySelector("#house-img");
 
 // this function should change the color of the sky according to
 // the actual time, sunset and sunrise time.
@@ -45,7 +51,7 @@ function skyColor(sunrise, sunset) {
 
   let startSunrise = sunriseInMinutes - 120;
   let startSunset = sunsetInMinutes - 60;
-  let endSunset = sunsetInMinutes + 120;
+  let endSunset = sunsetInMinutes - 60;
   // night:  0, 1, 2
   // around sunrise: 3, 4, 5, 6, 7 - sunrise, 8
   // day: 9, 10, 11, 12,
@@ -140,18 +146,27 @@ function skyColor(sunrise, sunset) {
     startSunset + ((endSunset - startSunset) / 9) * 7
   ) {
     cardBody.style.backgroundImage = skyColors[19];
+    imageHouse.style.filter = "grayscale(0.4)";
   } else if (
     timeInMinutes <
     startSunset + ((endSunset - startSunset) / 9) * 8
   ) {
     cardBody.style.backgroundImage = skyColors[20];
+    imageHouse.style.filter = "invert(0.7)";
+    cardBody.style.color = "#f7f7f7";
   } else if (timeInMinutes < endSunset) {
     cardBody.style.backgroundImage = skyColors[21];
+    imageHouse.style.filter = "invert(0.8)";
+    cardBody.style.color = "#f7f7f7";
     // until here is sunset
   } else if (timeInMinutes < endSunset + (1440 - endSunset) / 2) {
     cardBody.style.backgroundImage = skyColors[22];
+    imageHouse.style.filter = "invert(0.9)";
+    cardBody.style.color = "#fff";
   } else if (timeInMinutes < 1440) {
     cardBody.style.backgroundImage = skyColors[23];
+    imageHouse.style.filter = "invert(0.9)";
+    cardBody.style.color = "#fff";
   }
 }
 

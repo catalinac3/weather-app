@@ -96,6 +96,7 @@ function timeConversion(timeStamp) {
   // The multiplication *1000 is because the timeStamp is in second
   // and the Date expects miliseconds
   let timeObj = new Date(timeStamp * 1000);
+  console.log(timeObj.toString())
   return timeObj.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",

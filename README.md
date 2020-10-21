@@ -1,7 +1,6 @@
 # Weather-app
 
-The progress of the weather can be seen at:  
-https://catalinac3.github.io/weather-app/.
+Is a web site that displays the weather at the user's location. Additionally you can search the weather of another city
 
 ### Weather data:
 

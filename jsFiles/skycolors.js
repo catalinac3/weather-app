@@ -167,7 +167,7 @@ function skyColor(sunrise, sunset) {
     cardBody.style.backgroundImage = skyColors[23];
     imageHouse.style.filter = "invert(0.9)";
     cardBody.style.color = "#fff";
-  }
+   }
 }
 
 //This function converts a time stamp into and array that contains the hr and min.

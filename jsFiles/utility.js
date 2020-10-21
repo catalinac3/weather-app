@@ -56,3 +56,18 @@ function timeConversion(timeStamp) {
     minute: "2-digit",
   });
 }
+
+// This function converts the code of a country to the country name
+// if it doesn't exist, it returns the code itself
+function countryCodeConversion(countryCode) {
+  // bracket notation is needed because countryCode is a variable
+  return countryCode in isoCountries ? isoCountries[countryCode] : countryCode;
+}
+
+// This function returns an animated icon if available in the iconEquivalence object,
+// otherwise it returns a weather map icon
+function getIcon(icon) {
+  return icon in iconEquivalence
+    ? `./img/animated_icons/${iconEquivalence[icon]}.svg`
+    : `https://www.openweathermap.org/img/w/${icon}.png`;
+}

@@ -57,7 +57,7 @@ function fetchData(apiUrl, searchCity = false) {
 
       const { sunrise, sunset, country } = data.sys;
       let offsetTime = data.timezone;
-      //console.log("offset: ", offsetTime);
+    
       sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
       if (searchCity == true) {

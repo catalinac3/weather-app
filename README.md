@@ -1,7 +1,6 @@
 # Weather-app
 
-The progress of the weather can be seen at:  
-https://catalinac3.github.io/weather-app/.
+Is a web site that displays the weather at the user's location. Additionally you can search the weather of another city
 
 ### Weather data:
 
@@ -33,22 +32,19 @@ https://openweathermap.org/weather-conditions.
 
 ### Icons organization on Open Weather API - Animated icons downloaded from amCharts:
 
-| icons      | codes (id)         | Description                    | Animated icons (amCharts)   |
-| ---------- | ------------------ | ------------------------------ | --------------------------- |
-| 11d == 11n | 200 -232           | thunderstorm                   | thunder                     |
-| 09d == 09n | 300-321 && 520-531 | drizzle, shower rain           | rainy-7                     |
-| 10d != 10n | 500-504            | rain                           | rainy-3 (d), rainy-5 (n)    |
-| 13d = 13n  | 511 & (600-622)    | freezing rain, snow            | snowy-3 (d), snowy-5 (n)    |
-| 50d == 50n | 701-781            | atmosphere                     | use open weather            |
-| 01d != 01n | 800                | clear                          | day, night                  |
-| 02d != 02n | 801                | few clouds                     | cloudy-day-3,cloudy-night-3 |
-| 03d == 03n | 802                | scatter clouds                 | cloudy-day-3,cloudy-night-3 |
-| 04d == 04n | 803                | broken clouds, overcast clouds | cloudy-day-3,cloudy-night-3 |
+| icons      | Description                    | Animated icons (amCharts)   |
+| ---------- | ------------------------------ | --------------------------- |
+| 11d == 11n | thunderstorm                   | thunder                     |
+| 09d == 09n | drizzle, shower rain           | rainy-7                     |
+| 10d != 10n | rain                           | rainy-3 (d), rainy-5 (n)    |
+| 13d = 13n  | freezing rain, snow            | snowy-3 (d), snowy-5 (n)    |
+| 50d == 50n | atmosphere                     | use open weather            |
+| 01d != 01n | clear                          | day, night                  |
+| 02d != 02n | few clouds                     | cloudy-day-3,cloudy-night-3 |
+| 03d == 03n | scatter clouds                 | cloudy-day-3,cloudy-night-3 |
+| 04d == 04n | broken clouds, overcast clouds | cloudy-day-3,cloudy-night-3 |
 
 <br>
 In icons i.e. 11d, 11n, d=day, n=night.
 
-Codes include start number and end number.
 
-Drizzle: light rain, almost unperceptible. https://ownyourweather.com/understanding-weather-symbols/ <br>
-Shower rain: shorter duration of rains.

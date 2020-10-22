@@ -1,4 +1,7 @@
-const dateTimeElement = document.getElementById("date-display");
+const localDateTimeElement = document.getElementById("local-date-display");
+const searchLocationTimeElement = document.getElementById(
+  "search-location-time"
+);
 const temperature = document.getElementById("temperature");
 const feelTemperature = document.getElementById("feels-like");
 const humidityElement = document.getElementById("humidity");
@@ -18,8 +21,8 @@ const inputElement = document.querySelector("#city-input");
 const apiRootUrl = "https://api.openweathermap.org/data/2.5/";
 const KEY = "3137461397c70af0e13c77fda97afa11";
 
-const currentDateUserLocation = new Date();
 // ------- DISPLAYING CURRENT DATE AND TIME AT USER'S LOCATION--------------------
+const currentDateUserLocation = new Date();
 dateTimeDisplay(currentDateUserLocation);
 
 // --------DISPLAYING THE WEATHER IN USER'S LOCATION------------------------------
@@ -34,7 +37,7 @@ form.addEventListener("submit", search);
 // submit event works by pressing the button or pressing enter after making an input!
 
 //------------FETCHING WEATHER DATA FROM OPEN WEATHER API---------------------------
-function fetchData(apiUrl) {
+function fetchData(apiUrl, searchCity = false) {
   fetch(apiUrl)
     // the fetch() method instructs the web browsers to send a request to a URL.
     // Response format from Open Weather api is Json by default.
@@ -57,7 +60,9 @@ function fetchData(apiUrl) {
       //console.log("offset: ", offsetTime);
       sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
-
+      if (searchCity == true) {
+        searchLocationTimeElement.innerHTML = cityTime(currentDateUserLocation, offsetTime);
+      }
       countryElement.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;

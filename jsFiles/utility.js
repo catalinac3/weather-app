@@ -18,11 +18,26 @@ function search(event) {
   //prevent the default action of the form (reloading the page)
   let cityRequested = inputElement.value;
   const api = `${apiRootUrl}weather?q=${cityRequested}&appid=${KEY}&units=metric`;
-  fetchData(api);
+  // true parameter displays the time of the searched city
+  fetchData(api, true);
 }
 
-// displays date and time
-// TODO: fix for when displaying the time of a searched city -- timezones offset
+// this function calculates the time of the searched city
+function cityTime(dateObj, offsetTime) {
+  // .getTime() returns miliseconds
+  // .getTimezoneOffset() returns the time offset in minutes, *60*1000 to miliseconds
+  // offsetTime is collected in seconds
+  const dateObj1 = new Date(
+    dateObj.getTime() +
+      dateObj.getTimezoneOffset() * 60 * 1000 +
+      offsetTime * 1000
+  );
+  let hr = dateObj1.getHours();
+  let min = dateObj1.getMinutes();
+  return `time:  ${formatTime(hr, min)}`;
+}
+
+// displays date and time of the user location
 function dateTimeDisplay(dateObj) {
   let date;
   let time;
@@ -35,12 +50,7 @@ function dateTimeDisplay(dateObj) {
     hour: "2-digit",
     minute: "2-digit",
   });
-  dateTimeElement.innerHTML = `Today's date: ${date}, time: ${time}`;
-}
-
-// handles the alert error messages of fetchData() and geolocation.getCurrentPosition()
-function alertError(error) {
-  alert(error.message);
+  localDateTimeElement.innerHTML = `Local date: ${date}, local time: ${time}`;
 }
 
 // This function converts the sunrise and sunset timestamp and returns
@@ -55,6 +65,11 @@ function timeConversion(timeStamp, offsetTime) {
   let hr = timeObjWithOffset.getUTCHours();
   let min = timeObjWithOffset.getUTCMinutes();
   // here we get the hr and min to a format of hr:min AM/PM
+  return formatTime(hr, min);
+}
+
+// this function arrange the format of the time displayed to hh:mm
+function formatTime(hr, min) {
   let p;
   if (hr > 12) {
     hr -= 12;
@@ -68,6 +83,11 @@ function timeConversion(timeStamp, offsetTime) {
   let minDisplay;
   minDisplay = min.toString().length != 2 ? `0${min}` : min;
   return `${hrDisplay}:${minDisplay} ${p}`;
+}
+
+// handles the alert error messages of fetchData() and geolocation.getCurrentPosition()
+function alertError(error) {
+  alert(error.message);
 }
 
 // This function converts the code of a country to the country name

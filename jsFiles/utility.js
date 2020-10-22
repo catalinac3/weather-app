@@ -34,9 +34,20 @@ function cityTime(dateObj, offsetTime) {
       dateObj.getTimezoneOffset() * 60 * 1000 +
       offsetTime * 1000
   );
-  let hr = dateObj1.getHours();
-  let min = dateObj1.getMinutes();
-  return `time:  ${formatTime(hr, min)}`;
+  return formatTime(dateObj1);
+}
+
+// This function converts the sunrise and sunset timestamp and returns
+// a displayable time
+function timeConversion(timeStamp, offsetTime) {
+  // The multiplication *1000 is because the timeStamp and offsetTime are in second
+  // and the Date object expects miliseconds.
+  let dateObj = new Date(timeStamp * 1000);
+  let timeStampWithOffset = timeStamp * 1000 +
+  offsetTime * 1000 +
+  dateObj.getTimezoneOffset() * 60 * 1000;
+  let timeObjWithOffset = new Date(timeStampWithOffset);
+  return formatTime(timeObjWithOffset);
 }
 
 // displays date and time of the user location
@@ -47,44 +58,18 @@ function dateTimeDisplay(dateObj) {
     dateObj.getMonth() + 1
   }/${dateObj.getFullYear()}`;
 
-  // en-US: uses 12-hour time with AM/PM
-  time = dateObj.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  time = formatTime(dateObj);
   localDateTimeElement.innerHTML = `Local date: ${date}, local time: ${time}`;
 }
 
-// This function converts the sunrise and sunset timestamp and returns
-// a displayable time
-function timeConversion(timeStamp, offsetTime) {
-  // The multiplication *1000 is because the timeStamp and offsetTime are in second
-  // and the Date object expects miliseconds.
-  let timeStampWithOffset = timeStamp * 1000 + offsetTime * 1000;
-  let timeObjWithOffset = new Date(timeStampWithOffset);
-  // now that the offsetTime is manually adding, getting UTC hours and UTC minutes
-  // refers to the actual time at the selected location
-  let hr = timeObjWithOffset.getUTCHours();
-  let min = timeObjWithOffset.getUTCMinutes();
-  // here we get the hr and min to a format of hr:min AM/PM
-  return formatTime(hr, min);
-}
-
-// this function arrange the format of the time displayed to hh:mm
-function formatTime(hr, min) {
-  let p;
-  if (hr > 12) {
-    hr -= 12;
-    p = "PM";
-  } else {
-    p = "AM";
-  }
-  // here we make sure hr and min are displayed with 2 digits
-  let hrDisplay;
-  hrDisplay = hr.toString().length != 2 ? `0${hr}` : hr;
-  let minDisplay;
-  minDisplay = min.toString().length != 2 ? `0${min}` : min;
-  return `${hrDisplay}:${minDisplay} ${p}`;
+// this function format time hh:mm AM/PM
+function formatTime(dateObj) {
+   // en-US: uses 12-hour time with AM/PM
+  return dateObj.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+ 
 }
 
 // handles the alert error messages of fetchData() and geolocation.getCurrentPosition()

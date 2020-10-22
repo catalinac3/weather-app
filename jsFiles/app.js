@@ -61,7 +61,10 @@ function fetchData(apiUrl, searchCity = false) {
       sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
       if (searchCity == true) {
-        searchLocationTimeElement.innerHTML = cityTime(currentDateUserLocation, offsetTime);
+        searchLocationTimeElement.innerHTML = cityTime(
+          currentDateUserLocation,
+          offsetTime
+        );
       }
       countryElement.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;

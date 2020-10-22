@@ -17,6 +17,8 @@ function search(event) {
   // submiting a form is cancelled
   //prevent the default action of the form (reloading the page)
   let cityRequested = inputElement.value;
+  //TODO : display correct time cityTime()
+
   const api = `${apiRootUrl}weather?q=${cityRequested}&appid=${KEY}&units=metric`;
   // true parameter displays the time of the searched city
   fetchData(api, true);

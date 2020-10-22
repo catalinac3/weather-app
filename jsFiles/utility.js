@@ -12,7 +12,7 @@ function displayWeatherUserLocation(pos) {
 // takes the city input, builds api url and call fetch
 function search(event) {
   event.preventDefault();
-  //The preventDefault() method cancels the event if it is cancelable, 
+  //The preventDefault() method cancels the event if it is cancelable,
   // meaning that the default action that belongs to the event will not occur.
   // submiting a form is cancelled
   //prevent the default action of the form (reloading the page)
@@ -20,7 +20,6 @@ function search(event) {
   const api = `${apiRootUrl}weather?q=${cityRequested}&appid=${KEY}&units=metric`;
   fetchData(api);
 }
-
 
 // displays date and time
 // TODO: fix for when displaying the time of a searched city -- timezones offset
@@ -46,15 +45,29 @@ function alertError(error) {
 
 // This function converts the sunrise and sunset timestamp and returns
 // a displayable time
-// TODO: fix for when displaying the time of a searched city -- timezones offset
-function timeConversion(timeStamp) {
-  // The multiplication *1000 is because the timeStamp is in second
-  // and the Date expects miliseconds
-  let timeObj = new Date(timeStamp * 1000);
-  return timeObj.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+function timeConversion(timeStamp, offsetTime) {
+  // The multiplication *1000 is because the timeStamp and offsetTime are in second
+  // and the Date object expects miliseconds.
+  let timeStampWithOffset = timeStamp * 1000 + offsetTime * 1000;
+  let timeObjWithOffset = new Date(timeStampWithOffset);
+  // now that the offsetTime is manually adding, getting UTC hours and UTC minutes
+  // refers to the actual time at the selected location
+  let hr = timeObjWithOffset.getUTCHours();
+  let min = timeObjWithOffset.getUTCMinutes();
+  // here we get the hr and min to a format of hr:min AM/PM
+  let p;
+  if (hr > 12) {
+    hr -= 12;
+    p = "PM";
+  } else {
+    p = "AM";
+  }
+  // here we make sure hr and min are displayed with 2 digits
+  let hrDisplay;
+  hrDisplay = hr.toString().length != 2 ? `0${hr}` : hr;
+  let minDisplay;
+  minDisplay = min.toString().length != 2 ? `0${min}` : min;
+  return `${hrDisplay}:${minDisplay} ${p}`;
 }
 
 // This function converts the code of a country to the country name

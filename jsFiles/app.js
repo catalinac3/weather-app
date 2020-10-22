@@ -53,8 +53,10 @@ function fetchData(apiUrl) {
       humidityElement.innerHTML = ` ${humidity} %`;
 
       const { sunrise, sunset, country } = data.sys;
-      sunriseTime.innerHTML = timeConversion(sunrise);
-      sunsetTime.innerHTML = timeConversion(sunset);
+      let offsetTime = data.timezone;
+      //console.log("offset: ", offsetTime);
+      sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
+      sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
 
       countryElement.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;

@@ -14,6 +14,7 @@ When the web page is loaded. The data is received in a json file.
 | humidity            | data.main.humidity          | %                           |
 | time - sunrise      | data.sys.sunrise            | unix, UTC<sup>1</sup>       |
 | time - sunset       | data.sys.sunset             | unix, UTC                   |
+| time offset         | data.timezone               | shift in seconds from UTC   |
 | country name        | data.sys.country            | code                        |
 | city name           | data.name                   | string                      |
 | precipitation       | data.rain.1h                | mm (last hour) <sup>2</sup> |
@@ -46,5 +47,3 @@ https://openweathermap.org/weather-conditions.
 
 <br>
 In icons i.e. 11d, 11n, d=day, n=night.
-
-

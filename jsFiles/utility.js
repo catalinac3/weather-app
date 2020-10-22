@@ -17,37 +17,9 @@ function search(event) {
   // submiting a form is cancelled
   //prevent the default action of the form (reloading the page)
   let cityRequested = inputElement.value;
-  //TODO : display correct time cityTime()
-
   const api = `${apiRootUrl}weather?q=${cityRequested}&appid=${KEY}&units=metric`;
   // true parameter displays the time of the searched city
   fetchData(api, true);
-}
-
-// this function calculates the time of the searched city
-function cityTime(dateObj, offsetTime) {
-  // .getTime() returns miliseconds
-  // .getTimezoneOffset() returns the time offset in minutes, *60*1000 to miliseconds
-  // offsetTime is collected in seconds
-  const dateObj1 = new Date(
-    dateObj.getTime() +
-      dateObj.getTimezoneOffset() * 60 * 1000 +
-      offsetTime * 1000
-  );
-  return formatTime(dateObj1);
-}
-
-// This function converts the sunrise and sunset timestamp and returns
-// a displayable time
-function timeConversion(timeStamp, offsetTime) {
-  // The multiplication *1000 is because the timeStamp and offsetTime are in second
-  // and the Date object expects miliseconds.
-  let dateObj = new Date(timeStamp * 1000);
-  let timeStampWithOffset = timeStamp * 1000 +
-  offsetTime * 1000 +
-  dateObj.getTimezoneOffset() * 60 * 1000;
-  let timeObjWithOffset = new Date(timeStampWithOffset);
-  return formatTime(timeObjWithOffset);
 }
 
 // displays date and time of the user location
@@ -62,14 +34,34 @@ function dateTimeDisplay(dateObj) {
   localDateTimeElement.innerHTML = `Local date: ${date}, local time: ${time}`;
 }
 
-// this function format time hh:mm AM/PM
-function formatTime(dateObj) {
-   // en-US: uses 12-hour time with AM/PM
+// this function calculates the time of the searched city
+// and returns a displayable time
+function cityTime(dateObj, offsetTime) {
+  // .getTime() returns miliseconds
+  // offsetTime is collected in seconds
+  const dateObj1 = new Date(dateObj.getTime() + offsetTime * 1000);
+  return `Time: ${formatTime(dateObj1, "UTC")}`;
+}
+
+// This function converts the sunrise and sunset timestamp 
+// and returns a displayable time
+function timeConversion(timeStamp, offsetTime) {
+  // The multiplication *1000 is because the timeStamp and offsetTime are in second
+  // and the Date object expects miliseconds.
+  let timeStampWithOffset = timeStamp * 1000 + offsetTime * 1000;
+  let timeObjWithOffset = new Date(timeStampWithOffset);
+  return formatTime(timeObjWithOffset, "UTC");
+}
+
+// this function format time --> hh:mm AM/PM
+function formatTime(dateObj, timeZone = undefined) {
+  // en-US: uses 12-hour time with AM/PM
+  // timeZone: timeZone  == timeZone --> just because I used the same name
   return dateObj.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone,
   });
- 
 }
 
 // handles the alert error messages of fetchData() and geolocation.getCurrentPosition()

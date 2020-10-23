@@ -37,6 +37,11 @@ form.addEventListener("submit", search);
 // submit event works by pressing the button or pressing enter after making an input!
 
 //------------FETCHING WEATHER DATA FROM OPEN WEATHER API---------------------------
+/**
+ * @param {string} apiUrl - url
+ * @param {boolean} searchCity - default value is false, true when the fetchData
+ * is called from the search function.
+ */
 function fetchData(apiUrl, searchCity = false) {
   fetch(apiUrl)
     // the fetch() method instructs the web browsers to send a request to a URL.
@@ -57,7 +62,7 @@ function fetchData(apiUrl, searchCity = false) {
 
       const { sunrise, sunset, country } = data.sys;
       let offsetTime = data.timezone;
-    
+
       sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
       if (searchCity == true) {

@@ -1,9 +1,10 @@
-/* displayWeatherUserLocation() is used to get the location of the user's computer: latitude and longitude
-(geographical coordinates). These data is used to build the url for Open Weather API,
-where the data of the weather data is fetch from. 
-
-@param {object} pos - contains user position coordinates
-*/
+/**
+ * displayWeatherUserLocation() is used to get the location of the user's computer: latitude and longitude
+ * (geographical coordinates). These data is used to build the url for Open Weather API,
+ * where the data of the weather data is fetch from.
+ *
+ * @param {object} pos - contains user position coordinates
+ */
 function displayWeatherUserLocation(pos) {
   const latitude = pos.coords.latitude.toFixed(2);
   const longitude = pos.coords.longitude.toFixed(2);
@@ -11,10 +12,11 @@ function displayWeatherUserLocation(pos) {
   fetchData(apiUrl);
 }
 
-/*function call by submit event from form
- takes the city input, builds api url and call fetch
-
- @param {object} event - submit event
+/**
+ * function call by submit event from form
+ * takes the city input, builds api url and call fetch
+ *
+ * @param {object} event - submit event
  */
 function search(event) {
   event.preventDefault();
@@ -27,10 +29,11 @@ function search(event) {
   fetchData(api);
 }
 
-/* displays date and time
-
-@param {object} dateObj - contains date and time information
-*/
+/**
+ * displays date and time
+ *
+ * @param {object} dateObj - contains date and time information
+ */
 // TODO: fix for when displaying the time of a searched city -- timezones offset
 function dateTimeDisplay(dateObj) {
   const date = `${dateObj.getDate()}/${
@@ -45,19 +48,21 @@ function dateTimeDisplay(dateObj) {
   dateTimeElement.innerHTML = `Today's date: ${date}, time: ${time}`;
 }
 
-/* handles the alert error messages of fetchData() and geolocation.getCurrentPosition() 
-
-@param {object} error - contains information about the error 
-*/
+/**
+ * handles the alert error messages of fetchData() and geolocation.getCurrentPosition()
+ *
+ * @param {object} error - contains information about the error
+ */
 function alertError(error) {
   alert(error.message);
 }
 
-/* This function converts the sunrise and sunset timestamp and returns
-a displayable time
-
-@param {number} timeStamp - unix, contains information about the time.
-*/
+/**
+ * This function converts the sunrise and sunset timestamp and returns
+ * a displayable time
+ *
+ * @param {number} timeStamp - unix, contains information about the time.
+ */
 // TODO: fix for when displaying the time of a searched city -- timezones offset
 function timeConversion(timeStamp) {
   // The multiplication *1000 is because the timeStamp is in second
@@ -69,21 +74,23 @@ function timeConversion(timeStamp) {
   });
 }
 
-/* This function converts the code of a country to the country name
-if it doesn't exist, it returns the code itself
-
-@param {string} countryCode - i.e. "DE"
-*/
+/**
+ * This function converts the code of a country to the country name
+ * if it doesn't exist, it returns the code itself
+ *
+ * @param {string} countryCode - i.e. "DE"
+ */
 function countryCodeConversion(countryCode) {
   // bracket notation is needed because countryCode is a variable
   return countryCode in isoCountries ? isoCountries[countryCode] : countryCode;
 }
 
-/* This function returns an animated icon if available in the iconEquivalence object,
- otherwise it returns a weather map icon
-
- @param {string} icon - i.e. "02"
-*/
+/**
+ * This function returns an animated icon if available in the iconEquivalence object,
+ * otherwise it returns a weather map icon
+ *
+ * @param {string} icon - i.e. "02"
+ */
 function getIcon(icon) {
   return icon in iconEquivalence
     ? `./img/animated_icons/${iconEquivalence[icon]}.svg`

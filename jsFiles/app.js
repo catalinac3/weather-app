@@ -1,10 +1,10 @@
-const dateDisplay = document.getElementById("date-display");
+const dateTimeElement = document.getElementById("date-display");
 const temperature = document.getElementById("temperature");
 const feelTemperature = document.getElementById("feels-like");
-const humidityDisplay = document.getElementById("humidity");
+const humidityElement = document.getElementById("humidity");
 const sunriseTime = document.getElementById("sunrise-time");
 const sunsetTime = document.getElementById("sunset-time");
-const countryDisplay = document.getElementById("country");
+const countryElement = document.getElementById("country");
 const city = document.getElementById("city");
 const rainVolume = document.getElementById("rain-volume");
 const weatherDescription = document.getElementById("weather-description");
@@ -12,69 +12,51 @@ const windSpeed = document.getElementById("wind-speed");
 const weatherIcon = document.getElementById("weather-icon");
 const rainIcon = document.getElementById("rain-icon");
 
-// Getting current date and time.
-const dateToday = new Date();
-const date = `${dateToday.getDate()}/${
-  dateToday.getMonth() + 1
-}/${dateToday.getFullYear()}`;
+const form = document.querySelector("#city-search-form");
+const inputElement = document.querySelector("#city-input");
 
-// en-US: uses 12-hour time with AM/PM
-const time = dateToday.toLocaleTimeString("en-US", {
-  hour: "2-digit",
-  minute: "2-digit",
-});
-
-dateDisplay.innerHTML = `Today's date: ${date}, time: ${time}`;
-
-// HTML Geolocation API on your browser - no web request!
-// gettting location of the user's computer: latitude and longitude
-function getLocation(pos) {
-  const lat = pos.coords.latitude.toFixed(2);
-  const long = pos.coords.longitude.toFixed(2);
-  getWeatherData(lat, long);
-}
-
-function handleError(error) {
-  alertError(error);
-}
-
-navigator.geolocation.getCurrentPosition(getLocation, handleError);
-
-// Getting the temperature from the Open Weather API using geographical coordinates.
-// Response format is Json by default.
-// https://openweathermap.org/current --free
-
+const apiRootUrl = "https://api.openweathermap.org/data/2.5/";
 const KEY = "3137461397c70af0e13c77fda97afa11";
 
-function getWeatherData(latitude, longitude) {
-  const api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
-  //the fetch() method instructs the web browsers to send a request to a URL.
-  //less than60 calls/min
-  fetchData(api);
-}
+const currentDateUserLocation = new Date();
+// ------- DISPLAYING CURRENT DATE AND TIME AT USER'S LOCATION--------------------
+dateTimeDisplay(currentDateUserLocation);
 
-function fetchData(api){
-  fetch(api)
+// --------DISPLAYING THE WEATHER IN USER'S LOCATION------------------------------
+// HTML Geolocation API from the browser - no web request!
+navigator.geolocation.getCurrentPosition(
+  displayWeatherUserLocation,
+  alertError
+);
+
+// -----------DISPLAYING THE WEATHER IN CITY SEARCHED------------------------------
+form.addEventListener("submit", search);
+// submit event works by pressing the button or pressing enter after making an input!
+
+//------------FETCHING WEATHER DATA FROM OPEN WEATHER API---------------------------
+function fetchData(apiUrl) {
+  fetch(apiUrl)
+    // the fetch() method instructs the web browsers to send a request to a URL.
+    // Response format from Open Weather api is Json by default.
+    // free Open weather plan has less than60 calls/min
     .then((response) => response.json())
     // data --> Promise object represents the eventual completion (or failure)
     // of an asynchronous operation and its resulting value.
-    // console.log(response);
     .then((data) => {
-      console.log("the data is:", data);
+      console.log(data);
       // when the object has key, value pairs, like data.main
       // properties can be store: const {property} = object
-      // for easy access, long form: data.main.property
-      // it is call destructuring.
+      // for easy access, long form: data.main.property, this is call destructuring.
       const { temp, feels_like, humidity } = data.main;
       temperature.innerHTML = `${temp.toFixed(1)}°C`;
       feelTemperature.innerHTML = ` ${feels_like}°C`;
-      humidityDisplay.innerHTML = ` ${humidity} %`;
+      humidityElement.innerHTML = ` ${humidity} %`;
 
       const { sunrise, sunset, country } = data.sys;
       sunriseTime.innerHTML = timeConversion(sunrise);
       sunsetTime.innerHTML = timeConversion(sunset);
 
-      countryDisplay.innerHTML = countryCodeConversion(country);
+      countryElement.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;
 
@@ -87,21 +69,5 @@ function fetchData(api){
         ? "fas fa-umbrella"
         : "fas fa-umbrella-beach";
     })
-    .catch((error) => {
-      alertError(error);
-    });
-}
-function timeConversion(timeStamp) {
-  // The multiplication *1000 is because the timeStamp is in second
-  // and the Date expects miliseconds
-  let timeObj = new Date(timeStamp * 1000);
-  return timeObj.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
-// handles the alert pop up message for catch and handle error functions
-function alertError(error) {
-  alert(error.message);
+    .catch((error) => alertError(error));
 }

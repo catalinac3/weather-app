@@ -44,11 +44,15 @@ function dateTimeDisplay(dateObj) {
   localDateTimeElement.innerHTML = `Local date: ${date}, local time: ${time}`;
 }
 
-// this function calculates the time of the searched city
-// and returns a displayable time
+/**
+ * this function calculates the time of the searched city
+ *  and returns a displayable time
+ *
+ * @param {object} dateObj - contains date and time information
+ * @param {number} offsetTime - units of seconds
+ */
 function cityTime(dateObj, offsetTime) {
   // .getTime() returns miliseconds
-  // offsetTime is collected in seconds
   const dateObj1 = new Date(dateObj.getTime() + offsetTime * 1000);
   return `Time: ${formatTime(dateObj1, "UTC")}`;
 }
@@ -67,7 +71,13 @@ function timeConversion(timeStamp, offsetTime) {
   return formatTime(timeObjWithOffset, "UTC");
 }
 
-// this function format time --> hh:mm AM/PM
+/**
+ * this function format time --> hh:mm AM/PM
+ *
+ * @param {object} dateObj - contains date and time information
+ * @param {string} timeZone - "UTC" or undefined as default for local time
+ */
+//
 function formatTime(dateObj, timeZone = undefined) {
   // en-US: uses 12-hour time with AM/PM
   // timeZone: timeZone  == timeZone --> just because I used the same name
@@ -86,7 +96,6 @@ function formatTime(dateObj, timeZone = undefined) {
 function alertError(error) {
   alert(error.message);
 }
-
 
 /**
  * This function converts the code of a country to the country name

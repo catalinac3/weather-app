@@ -1,0 +1,29 @@
+body {
+  background: url("./img/background_main.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+h1 {
+  color: #403288;
+  font-family: "Kalam", cursive;
+}
+
+.card {
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.card-footer span {
+  display: inline-block;
+  margin: 0 10px;
+}
+.main-temp {
+  padding-right: 1px;
+}
+#local-date-display {
+  font-size: small;
+}

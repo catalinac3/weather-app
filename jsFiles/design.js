@@ -1,21 +1,24 @@
 // TODO
+// 1st it has to work of the location of the user !
+
 // arrange that the house is change to normal, when here in munich is dark
 // and you want to go to a placer where there is sun, the hause and letters
 // in the card are visible
 
 /**
- * this function should change the color of the background-sky 
+ * this function should change the color of the background-sky
  * according to the actual time, sunset and sunrise time.
  * @param {*} sunrise
  * @param {*} sunset
  */
-function skyColor(sunrise, sunset) {
+function skyColor(sunrise, sunset, offsetTime) {
   // a day has 1440 min: 60*24
-  let hr = dateToday.getHours();
-  let min = dateToday.getMinutes();
+  let hr = currentDateUserLocation.getHours();
+  let min = currentDateUserLocation.getMinutes();
+  console.log(hr, min);
   let timeInMinutes = hr * 60 + min;
-  let sunriseInMinutes = timeConversion2(sunrise);
-  let sunsetInMinutes = timeConversion2(sunset);
+  let sunriseInMinutes = timeConversion2(sunrise, offsetTime);
+  let sunsetInMinutes = timeConversion2(sunset, offsetTime);
 
   let startSunrise = sunriseInMinutes - 120;
   let startSunset = sunsetInMinutes - 60;
@@ -139,8 +142,9 @@ function skyColor(sunrise, sunset) {
 }
 
 //This function converts a time stamp into and array that contains the hr and min.
-function timeConversion2(timeStamp) {
-  let timeObj = new Date(timeStamp * 1000);
-  let timeInMin = timeObj.getHours() * 60 + timeObj.getMinutes();
+function timeConversion2(timeStamp, offsetTime) {
+  let timeObjWithOffset = new Date(timeStamp * 1000 + offsetTime * 1000);
+  let timeInMin =
+    timeObjWithOffset.getUTCHours() * 60 + timeObjWithOffset.getUTCMinutes();
   return timeInMin;
 }

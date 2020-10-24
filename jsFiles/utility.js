@@ -40,7 +40,7 @@ function dateTimeDisplay(dateObj) {
     dateObj.getMonth() + 1
   }/${dateObj.getFullYear()}`;
 
-  time = formatTime(dateObj);
+  const time = formatTime(dateObj);
   localDateTimeElement.innerHTML = `Local date: ${date}, local time: ${time}`;
 }
 

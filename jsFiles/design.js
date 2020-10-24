@@ -1,33 +1,37 @@
-// TODO
-// 1st it has to work of the location of the user !
-
-// arrange that the house is change to normal, when here in munich is dark
+// TODO :
+// arrange that the house is change back to normal, (when here in munich is dark
 // and you want to go to a placer where there is sun, the hause and letters
-// in the card are visible
+// in the card are visible)
 
 /**
- * this function should change the color of the background-sky
+ * This function changes the color of the background-sky,
  * according to the actual time, sunset and sunrise time.
- * @param {*} sunrise
- * @param {*} sunset
+ * Additionally it changes the letter of the card and the filter of the house
+ * according to the color of the sky.
+ * @param {number} sunrise - time stamp with time info
+ * @param {number} sunset - time stamp with time info
+ * @param {number} offsetTime - offset time refering to the time zone
+ * @param {boolean} searchCity - default false, true if the user has search for a city
  */
-function skyColor(sunrise, sunset, offsetTime) {
-  // a day has 1440 min: 60*24
-  let hr = currentDateUserLocation.getHours();
-  let min = currentDateUserLocation.getMinutes();
-  console.log(hr, min);
-  let timeInMinutes = hr * 60 + min;
-  let sunriseInMinutes = timeConversion2(sunrise, offsetTime);
-  let sunsetInMinutes = timeConversion2(sunset, offsetTime);
+function skyColor(sunrise, sunset, offsetTime, searchCity) {
+  // A day has 1440 min: 60*24
+  let timeInMinutes;
+  if (!searchCity) {
+    const hr = currentDateUserLocation.getHours();
+    const min = currentDateUserLocation.getMinutes();
+    timeInMinutes = hr * 60 + min;
+    console.log(hr, min, timeInMinutes);
+  } else {
+    timeInMinutes = cityTimeToMin(currentDateUserLocation, offsetTime);
+  }
 
-  let startSunrise = sunriseInMinutes - 120;
-  let startSunset = sunsetInMinutes - 60;
-  let endSunset = sunsetInMinutes - 60;
-  // night:  0, 1, 2
-  // around sunrise: 3, 4, 5, 6, 7 - sunrise, 8
-  // day: 9, 10, 11, 12,
-  // around sunset:13, 14, 15, 16, 17 - sunset , 18, 19 20, 21
-  // night: 22, 23
+  const sunriseInMinutes = timeConversionToMin(sunrise, offsetTime);
+  const sunsetInMinutes = timeConversionToMin(sunset, offsetTime);
+
+  const startSunrise = sunriseInMinutes - 120;
+  const startSunset = sunsetInMinutes - 60;
+  const endSunset = sunsetInMinutes - 60;
+
   if (timeInMinutes < startSunrise / 3) {
     cardBody.style.backgroundImage = skyColors[0];
   } else if (timeInMinutes < (startSunrise / 3) * 2) {
@@ -141,10 +145,29 @@ function skyColor(sunrise, sunset, offsetTime) {
   }
 }
 
-//This function converts a time stamp into and array that contains the hr and min.
-function timeConversion2(timeStamp, offsetTime) {
-  let timeObjWithOffset = new Date(timeStamp * 1000 + offsetTime * 1000);
-  let timeInMin =
+/**
+ * This function converts a time stamp into a number
+ * that express the time in minutes
+ * @param {number} timeStamp - unix, contains information about the time.
+ * @param {number} offsetTime - units of seconds
+ */
+
+function timeConversionToMin(timeStamp, offsetTime) {
+  const timeObjWithOffset = new Date(timeStamp * 1000 + offsetTime * 1000);
+  const timeInMin =
     timeObjWithOffset.getUTCHours() * 60 + timeObjWithOffset.getUTCMinutes();
+  return timeInMin;
+}
+
+/**
+ * this function calculates the time of the searched city
+ * to minutes
+ * @param {object} dateObj
+ * @param {number} offsetTime
+ */
+function cityTimeToMin(dateObj, offsetTime) {
+  // .getTime() returns miliseconds
+  const dateObj1 = new Date(dateObj.getTime() + offsetTime * 1000);
+  const timeInMin = dateObj1.getUTCHours() * 60 + dateObj1.getUTCMinutes();
   return timeInMin;
 }

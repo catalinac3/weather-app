@@ -46,7 +46,7 @@ function dateTimeDisplay(dateObj) {
 
 /**
  * this function calculates the time of the searched city
- *  and returns a displayable time
+ *  and returns a displayable time  --> hh:mm AM/PM
  *
  * @param {object} dateObj - contains date and time information
  * @param {number} offsetTime - units of seconds
@@ -59,7 +59,7 @@ function cityTime(dateObj, offsetTime) {
 
 /**
  * This function converts the sunrise and sunset timestamp and returns
- * a displayable time
+ * a displayable time --> hh:mm AM/PM
  *
  * @param {number} timeStamp - unix, contains information about the time.
  */

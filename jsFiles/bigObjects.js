@@ -17,6 +17,11 @@ const iconEquivalence = {
   "11n": "thunder",
 };
 
+// night:  0, 1, 2
+// around sunrise: 3, 4, 5, 6, 7 (sunrise), 8
+// day: 9, 10, 11, 12,
+// around sunset:13, 14, 15, 16, 17 (sunset), 18, 19 20, 21
+// night: 22, 23
 const skyColors = {
   0: "#00000c",
   1: "linear-gradient(to bottom, #020111 85%,#191621 100%)",

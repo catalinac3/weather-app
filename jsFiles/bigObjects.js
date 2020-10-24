@@ -17,8 +17,9 @@ const iconEquivalence = {
   "11n": "thunder",
 };
 
+// How the colors where selected
 // night:  0, 1, 2
-// around sunrise: 3, 4, 5, 6, 7 (sunrise), 8
+// around sunrise: 3, 4, 5, 6, 7, 8 (sunrise)
 // day: 9, 10, 11, 12,
 // around sunset:13, 14, 15, 16, 17 (sunset), 18, 19 20, 21
 // night: 22, 23

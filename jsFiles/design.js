@@ -14,7 +14,6 @@
  * @param {boolean} searchCity - default false, true if the user has search for a city
  */
 function skyColor(sunrise, sunset, offsetTime, searchCity) {
-  // A day has 1440 min: 60*24
   let timeInMinutes;
   if (!searchCity) {
     const hr = currentDateUserLocation.getHours();
@@ -29,103 +28,67 @@ function skyColor(sunrise, sunset, offsetTime, searchCity) {
   const sunsetInMinutes = timeConversionToMin(sunset, offsetTime);
 
   const startSunrise = sunriseInMinutes - 120;
+  const aroundSunrise = sunriseInMinutes - startSunrise;
   const startSunset = sunsetInMinutes - 60;
+  const day = startSunset - sunriseInMinutes;
   const endSunset = sunsetInMinutes - 60;
+  const aroundSunset = endSunset - startSunset;
+  // A day has 1440 min: 60*24
+  const night = 1440 - endSunset;
 
+  // night
   if (timeInMinutes < startSunrise / 3) {
     cardBody.style.backgroundImage = skyColors[0];
   } else if (timeInMinutes < (startSunrise / 3) * 2) {
     cardBody.style.backgroundImage = skyColors[1];
   } else if (timeInMinutes < startSunrise) {
     cardBody.style.backgroundImage = skyColors[2];
-    // until here is night
-  } else if (
-    timeInMinutes <
-    startSunrise + (sunriseInMinutes - startSunrise) / 6
-  ) {
+    // end night
+    // sunrise
+  } else if (timeInMinutes < startSunrise + aroundSunrise / 6) {
     cardBody.style.backgroundImage = skyColors[3];
-  } else if (
-    timeInMinutes <
-    startSunrise + ((sunriseInMinutes - startSunrise) / 6) * 2
-  ) {
+  } else if (timeInMinutes < startSunrise + (aroundSunrise / 6) * 2) {
     cardBody.style.backgroundImage = skyColors[4];
-  } else if (
-    timeInMinutes <
-    startSunrise + ((sunriseInMinutes - startSunrise) / 6) * 3
-  ) {
+  } else if (timeInMinutes < startSunrise + (aroundSunrise / 6) * 3) {
     cardBody.style.backgroundImage = skyColors[5];
-  } else if (
-    timeInMinutes <
-    startSunrise + ((sunriseInMinutes - startSunrise) / 6) * 4
-  ) {
+  } else if (timeInMinutes < startSunrise + (aroundSunrise / 6) * 4) {
     cardBody.style.backgroundImage = skyColors[6];
-  } else if (
-    timeInMinutes <
-    startSunrise + ((sunriseInMinutes - startSunrise) / 6) * 5
-  ) {
+  } else if (timeInMinutes < startSunrise + (aroundSunrise / 6) * 5) {
     cardBody.style.backgroundImage = skyColors[7];
   } else if (timeInMinutes < sunriseInMinutes) {
     cardBody.style.backgroundImage = skyColors[8];
-    // until here is sunrise
-  } else if (
-    timeInMinutes <
-    sunriseInMinutes + (startSunset - sunriseInMinutes) / 4
-  ) {
+    // end sunrise
+    // day
+  } else if (timeInMinutes < sunriseInMinutes + day / 4) {
     cardBody.style.backgroundImage = skyColors[9];
-  } else if (
-    timeInMinutes <
-    sunriseInMinutes + ((startSunset - sunriseInMinutes) / 4) * 2
-  ) {
+  } else if (timeInMinutes < sunriseInMinutes + (day / 4) * 2) {
     cardBody.style.backgroundImage = skyColors[10];
     cardFooter.style.backgroundColor = "#FFF";
     cardHeader.style.backgroundColor = "#FFF";
-  } else if (
-    timeInMinutes <
-    sunriseInMinutes + ((startSunset - sunriseInMinutes) / 4) * 3
-  ) {
+  } else if (timeInMinutes < sunriseInMinutes + (day / 4) * 3) {
     cardBody.style.backgroundImage = skyColors[11];
     cardFooter.style.backgroundColor = "#FFF";
     cardHeader.style.backgroundColor = "#FFF";
   } else if (timeInMinutes < startSunset) {
     cardBody.style.backgroundImage = skyColors[12];
-    // until here is day
-  } else if (timeInMinutes < startSunset + (endSunset - startSunset) / 9) {
+    // end day
+    // sunset
+  } else if (timeInMinutes < startSunset + aroundSunset / 9) {
     cardBody.style.backgroundImage = skyColors[13];
-  } else if (
-    timeInMinutes <
-    startSunset + ((endSunset - startSunset) / 9) * 2
-  ) {
+  } else if (timeInMinutes < startSunset + (aroundSunset / 9) * 2) {
     cardBody.style.backgroundImage = skyColors[14];
-  } else if (
-    timeInMinutes <
-    startSunset + ((endSunset - startSunset) / 9) * 3
-  ) {
+  } else if (timeInMinutes < startSunset + (aroundSunset / 9) * 3) {
     cardBody.style.backgroundImage = skyColors[15];
-  } else if (
-    timeInMinutes <
-    startSunset + ((endSunset - startSunset) / 9) * 4
-  ) {
+  } else if (timeInMinutes < startSunset + (aroundSunset / 9) * 4) {
     cardBody.style.backgroundImage = skyColors[16];
-  } else if (
-    timeInMinutes <
-    startSunset + ((endSunset - startSunset) / 9) * 5
-  ) {
+  } else if (timeInMinutes < startSunset + (aroundSunset / 9) * 5) {
     cardBody.style.backgroundImage = skyColors[17];
-  } else if (
-    timeInMinutes <
-    startSunset + ((endSunset - startSunset) / 9) * 6
-  ) {
+  } else if (timeInMinutes < startSunset + (aroundSunset / 9) * 6) {
     cardBody.style.backgroundImage = skyColors[18];
-  } else if (
-    timeInMinutes <
-    startSunset + ((endSunset - startSunset) / 9) * 7
-  ) {
+  } else if (timeInMinutes < startSunset + (aroundSunset / 9) * 7) {
     cardBody.style.backgroundImage = skyColors[19];
     imageHouse.style.filter = "grayscale(0.4)";
-  } else if (
-    timeInMinutes <
-    startSunset + ((endSunset - startSunset) / 9) * 8
-  ) {
+  } else if (timeInMinutes < startSunset + (aroundSunset / 9) * 8) {
     cardBody.style.backgroundImage = skyColors[20];
     imageHouse.style.filter = "invert(0.7)";
     cardBody.style.color = "#f7f7f7";
@@ -133,8 +96,9 @@ function skyColor(sunrise, sunset, offsetTime, searchCity) {
     cardBody.style.backgroundImage = skyColors[21];
     imageHouse.style.filter = "invert(0.8)";
     cardBody.style.color = "#f7f7f7";
-    // until here is sunset
-  } else if (timeInMinutes < endSunset + (1440 - endSunset) / 2) {
+    // end sunset
+    // night
+  } else if (timeInMinutes < endSunset + night / 2) {
     cardBody.style.backgroundImage = skyColors[22];
     imageHouse.style.filter = "invert(0.9)";
     cardBody.style.color = "#fff";

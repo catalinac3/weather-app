@@ -47,3 +47,8 @@ h1 {
 #weather-icon {
   filter: sepia(50%);
 }
+
+#local-date-display {
+  font-size: small;
+}
+

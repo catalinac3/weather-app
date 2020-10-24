@@ -24,25 +24,22 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="cssFiles/styles.css" />
-    <script src="jsFiles/skycolors.js" type="text/javascript" defer></script>
-    <script src="jsFiles/citysearch.js" type="text/javascript" defer></script>
-    <script
-      src="jsFiles/countries_code.js"
-      type="text/javascript"
-      defer
-    ></script>
-    <script src="jsFiles/icon.js" type="text/javascript" defer></script>
-    <script src="jsFiles/app.js" type="text/javascript" defer></script>
+
+    <script src="jsFiles/utility.js" type="text/javascript" defer></script>
+    <script src="jsFiles/bigObjects.js" type="text/javascript" defer></script>
+<script src="jsFiles/skycolors.js" type="text/javascript" defer></script>    
+<script src="jsFiles/app.js" type="text/javascript" defer></script>
   </head>
 
   <body>
     <main>
       <div class="card">
         <div class="card-header">
+          <span id="local-date-display"></span>
           <h1 class="card-title">
             <span id="city">---</span>, <span id="country">---</span>
           </h1>
-          <span id="date-display"></span>
+          <span id="search-location-time"></span>
         </div>
 
         <div class="card-body">

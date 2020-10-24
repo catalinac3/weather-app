@@ -66,8 +66,7 @@ function cityTime(dateObj, offsetTime) {
 function timeConversion(timeStamp, offsetTime) {
   // The multiplication *1000 is because the timeStamp and offsetTime are in second
   // and the Date object expects miliseconds.
-  const timeStampWithOffset = timeStamp * 1000 + offsetTime * 1000;
-  const timeObjWithOffset = new Date(timeStampWithOffset);
+  const timeObjWithOffset = new Date(timeStamp * 1000 + offsetTime * 1000);
   return formatTime(timeObjWithOffset, "UTC");
 }
 

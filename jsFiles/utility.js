@@ -33,54 +33,49 @@ function search(event) {
 /**
  * displays date and time
  *
- * @param {object} dateObj - contains date and time information
+ * @param {object} date - contains date and time information
  */
-function dateTimeDisplay(dateObj) {
-  const date = `${dateObj.getDate()}/${
-    dateObj.getMonth() + 1
-  }/${dateObj.getFullYear()}`;
+function dateTimeDisplay(date) {
+  const dateToday = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
 
-  const time = formatTime(dateObj);
-  localDateTimeElement.innerHTML = `Local date: ${date}, local time: ${time}`;
+  const time = formatTime(date);
+  localDateTimeElement.innerHTML = `Local date: ${dateToday}, local time: ${time}`;
 }
 
 /**
- * this function calculates the time of the searched city
- *  and returns a displayable time
+ * This function converts timestamp or a
+ * date object and returns a displayable time
+ * Currently use for the sunrise and sunset time stamps
+ * and to display the time of the searched city
  *
- * @param {object} dateObj - contains date and time information
- * @param {number} offsetTime - units of seconds
+ * @param {number or object} dateInfo - unix, contains information about the time.
  */
-function cityTime(dateObj, offsetTime) {
-  // .getTime() returns miliseconds
-  const dateObj1 = new Date(dateObj.getTime() + offsetTime * 1000);
-  return `Time: ${formatTime(dateObj1, "UTC")}`;
-}
-
-/**
- * This function converts the sunrise and sunset timestamp and returns
- * a displayable time
- *
- * @param {number} timeStamp - unix, contains information about the time.
- */
-function timeConversion(timeStamp, offsetTime) {
+function timeConversion(dateInfo, offsetTime) {
+  let time;
+  if (typeof dateInfo == "number") {
+    time = dateInfo * 1000;
+  } else {
+    time = dateInfo.getTime();
+  }
   // The multiplication *1000 is because the timeStamp and offsetTime are in second
   // and the Date object expects miliseconds.
-  const timeObjWithOffset = new Date(timeStamp * 1000 + offsetTime * 1000);
+  const timeObjWithOffset = new Date(time + offsetTime * 1000);
   return formatTime(timeObjWithOffset, "UTC");
 }
 
 /**
  * this function format time --> hh:mm AM/PM
  *
- * @param {object} dateObj - contains date and time information
+ * @param {object} date - contains date and time information
  * @param {string} timeZone - "UTC" or undefined as default for local time
  */
 //
-function formatTime(dateObj, timeZone = undefined) {
+function formatTime(date, timeZone = undefined) {
   // en-US: uses 12-hour time with AM/PM
   // timeZone: timeZone  == timeZone --> just because I used the same name
-  return dateObj.toLocaleTimeString("en-US", {
+  return date.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     timeZone,

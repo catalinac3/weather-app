@@ -73,7 +73,7 @@ function fetchData(apiUrl, searchCity = false) {
 
       sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
-      skyColor(sunrise, sunset, offsetTime, searchCity);
+      skyColor(sunrise, sunset, offsetTime);
       if (searchCity) {
         searchLocationTimeElement.innerHTML = timeConversion(
           currentDateUserLocation,

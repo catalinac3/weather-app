@@ -11,21 +11,15 @@
  * @param {number} sunrise - time stamp with time info
  * @param {number} sunset - time stamp with time info
  * @param {number} offsetTime - offset time refering to the time zone
- * @param {boolean} searchCity - default false, true if the user has search for a city
  */
-function skyColor(sunrise, sunset, offsetTime, searchCity) {
-  let timeInMinutes;
-  if (!searchCity) {
-    const hr = currentDateUserLocation.getHours();
-    const min = currentDateUserLocation.getMinutes();
-    timeInMinutes = hr * 60 + min;
-    console.log(hr, min, timeInMinutes);
-  } else {
-    timeInMinutes = cityTimeToMin(currentDateUserLocation, offsetTime);
-  }
-
-  const sunriseInMinutes = timeConversionToMin(sunrise, offsetTime);
-  const sunsetInMinutes = timeConversionToMin(sunset, offsetTime);
+function skyColor(sunrise, sunset, offsetTime) {
+  const timeInMinutes = timeConversion(
+    currentDateUserLocation,
+    offsetTime,
+    true
+  );
+  const sunriseInMinutes = timeConversion(sunrise, offsetTime, true);
+  const sunsetInMinutes = timeConversion(sunset, offsetTime, true);
 
   const startSunrise = sunriseInMinutes - 120;
   const aroundSunrise = sunriseInMinutes - startSunrise;
@@ -35,6 +29,11 @@ function skyColor(sunrise, sunset, offsetTime, searchCity) {
   const aroundSunset = endSunset - startSunset;
   // A day has 1440 min: 60*24
   const night = 1440 - endSunset;
+
+  console.log("Sunrise: ", sunriseInMinutes);
+  console.log("startSunset: ", startSunset);
+  console.log("day:", day);
+  console.log("startsunset", startSunset);
 
   // night
   if (timeInMinutes < startSunrise / 3) {
@@ -63,14 +62,17 @@ function skyColor(sunrise, sunset, offsetTime, searchCity) {
     cardBody.style.backgroundImage = skyColors[9];
   } else if (timeInMinutes < sunriseInMinutes + (day / 4) * 2) {
     cardBody.style.backgroundImage = skyColors[10];
+    console.log("color 10 is on ");
     cardFooter.style.backgroundColor = "#FFF";
     cardHeader.style.backgroundColor = "#FFF";
   } else if (timeInMinutes < sunriseInMinutes + (day / 4) * 3) {
     cardBody.style.backgroundImage = skyColors[11];
+    console.log("color 11 is on ");
     cardFooter.style.backgroundColor = "#FFF";
     cardHeader.style.backgroundColor = "#FFF";
   } else if (timeInMinutes < startSunset) {
     cardBody.style.backgroundImage = skyColors[12];
+    console.log("color 12 is on ");
     // end day
     // sunset
   } else if (timeInMinutes < startSunset + aroundSunset / 9) {
@@ -107,31 +109,4 @@ function skyColor(sunrise, sunset, offsetTime, searchCity) {
     imageHouse.style.filter = "invert(0.9)";
     cardBody.style.color = "#fff";
   }
-}
-
-/**
- * This function converts a time stamp into a number
- * that express the time in minutes
- * @param {number} timeStamp - unix, contains information about the time.
- * @param {number} offsetTime - units of seconds
- */
-
-function timeConversionToMin(timeStamp, offsetTime) {
-  const timeObjWithOffset = new Date(timeStamp * 1000 + offsetTime * 1000);
-  const timeInMin =
-    timeObjWithOffset.getUTCHours() * 60 + timeObjWithOffset.getUTCMinutes();
-  return timeInMin;
-}
-
-/**
- * this function calculates the time of the searched city
- * to minutes
- * @param {object} dateObj
- * @param {number} offsetTime
- */
-function cityTimeToMin(dateObj, offsetTime) {
-  // .getTime() returns miliseconds
-  const dateObj1 = new Date(dateObj.getTime() + offsetTime * 1000);
-  const timeInMin = dateObj1.getUTCHours() * 60 + dateObj1.getUTCMinutes();
-  return timeInMin;
 }

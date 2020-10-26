@@ -26,26 +26,56 @@ function search(event) {
   //prevent the default action of the form (reloading the page)
   const cityRequested = inputElement.value;
   const api = `${apiRootUrl}weather?q=${cityRequested}&appid=${KEY}&units=metric`;
-  fetchData(api);
+  // true parameter displays the time of the searched city
+  fetchData(api, true);
 }
 
 /**
  * displays date and time
  *
- * @param {object} dateObj - contains date and time information
+ * @param {object} date - contains date and time information
  */
-// TODO: fix for when displaying the time of a searched city -- timezones offset
-function dateTimeDisplay(dateObj) {
-  const date = `${dateObj.getDate()}/${
-    dateObj.getMonth() + 1
-  }/${dateObj.getFullYear()}`;
+function dateTimeDisplay(date) {
+  const dateToday = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
 
+  const time = formatTime(date);
+  localDateTimeElement.innerHTML = `Local date: ${dateToday}, local time: ${time}`;
+}
+
+/**
+ * This function converts timestamp or a date object,
+ * adds the offset time and returns a displayable time --> hh:mm AM/PM
+ * Currently use for the sunrise and sunset time stamps
+ * and to display the time of the searched city
+ *
+ * @param {number or object} dateInfo - unix, contains information about the time.
+ * @param {number} offsetTime - is the seconds a certain time zone is ahead of or behind UTC.
+ */
+function timeConversion(dateInfo, offsetTime) {
+  const time =
+    typeof dateInfo == "number" ? dateInfo * 1000 : dateInfo.getTime();
+  // When dateInfo is a number, dateInfo is a timestamp, multiplication *1000 is because
+  // the timeStamp and offsetTime are in second and the Date object expects miliseconds.
+  return formatTime(new Date(time + offsetTime * 1000), "UTC");
+}
+
+/**
+ * this function format time --> hh:mm AM/PM
+ *
+ * @param {object} date - contains date and time information
+ * @param {string} timeZone - "UTC" or undefined as default for local time
+ */
+//
+function formatTime(date, timeZone = undefined) {
   // en-US: uses 12-hour time with AM/PM
-  const time = dateObj.toLocaleTimeString("en-US", {
+  // timeZone: timeZone  == timeZone --> just because I used the same name
+  return date.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone,
   });
-  dateTimeElement.innerHTML = `Today's date: ${date}, time: ${time}`;
 }
 
 /**
@@ -55,23 +85,6 @@ function dateTimeDisplay(dateObj) {
  */
 function alertError(error) {
   alert(error.message);
-}
-
-/**
- * This function converts the sunrise and sunset timestamp and returns
- * a displayable time
- *
- * @param {number} timeStamp - unix, contains information about the time.
- */
-// TODO: fix for when displaying the time of a searched city -- timezones offset
-function timeConversion(timeStamp) {
-  // The multiplication *1000 is because the timeStamp is in second
-  // and the Date expects miliseconds
-  const timeObj = new Date(timeStamp * 1000);
-  return timeObj.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 }
 
 /**

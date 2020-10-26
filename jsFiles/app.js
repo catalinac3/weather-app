@@ -70,11 +70,12 @@ function fetchData(apiUrl, searchCity = false) {
 
       const { sunrise, sunset, country } = data.sys;
       const offsetTime = data.timezone;
+
       sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
       skyColor(sunrise, sunset, offsetTime, searchCity);
-      if (searchCity == true) {
-        searchLocationTimeElement.innerHTML = cityTime(
+      if (searchCity) {
+        searchLocationTimeElement.innerHTML = timeConversion(
           currentDateUserLocation,
           offsetTime
         );

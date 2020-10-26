@@ -33,54 +33,45 @@ function search(event) {
 /**
  * displays date and time
  *
- * @param {object} dateObj - contains date and time information
+ * @param {object} date - contains date and time information
  */
-function dateTimeDisplay(dateObj) {
-  const date = `${dateObj.getDate()}/${
-    dateObj.getMonth() + 1
-  }/${dateObj.getFullYear()}`;
+function dateTimeDisplay(date) {
+  const dateToday = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
 
-  const time = formatTime(dateObj);
-  localDateTimeElement.innerHTML = `Local date: ${date}, local time: ${time}`;
+  const time = formatTime(date);
+  localDateTimeElement.innerHTML = `Local date: ${dateToday}, local time: ${time}`;
 }
 
 /**
- * this function calculates the time of the searched city
- *  and returns a displayable time  --> hh:mm AM/PM
+ * This function converts timestamp or a date object,
+ * adds the offset time and returns a displayable time --> hh:mm AM/PM
+ * Currently use for the sunrise and sunset time stamps
+ * and to display the time of the searched city
  *
- * @param {object} dateObj - contains date and time information
- * @param {number} offsetTime - units of seconds
+ * @param {number or object} dateInfo - unix, contains information about the time.
+ * @param {number} offsetTime - is the seconds a certain time zone is ahead of or behind UTC.
  */
-function cityTime(dateObj, offsetTime) {
-  // .getTime() returns miliseconds
-  const dateObj1 = new Date(dateObj.getTime() + offsetTime * 1000);
-  return `Time: ${formatTime(dateObj1, "UTC")}`;
-}
-
-/**
- * This function converts the sunrise and sunset timestamp and returns
- * a displayable time --> hh:mm AM/PM
- *
- * @param {number} timeStamp - unix, contains information about the time.
- */
-function timeConversion(timeStamp, offsetTime) {
-  // The multiplication *1000 is because the timeStamp and offsetTime are in second
-  // and the Date object expects miliseconds.
-  const timeObjWithOffset = new Date(timeStamp * 1000 + offsetTime * 1000);
-  return formatTime(timeObjWithOffset, "UTC");
+function timeConversion(dateInfo, offsetTime) {
+  const time =
+    typeof dateInfo == "number" ? dateInfo * 1000 : dateInfo.getTime();
+  // When dateInfo is a number, dateInfo is a timestamp, multiplication *1000 is because
+  // the timeStamp and offsetTime are in second and the Date object expects miliseconds.
+  return formatTime(new Date(time + offsetTime * 1000), "UTC");
 }
 
 /**
  * this function format time --> hh:mm AM/PM
  *
- * @param {object} dateObj - contains date and time information
+ * @param {object} date - contains date and time information
  * @param {string} timeZone - "UTC" or undefined as default for local time
  */
 //
-function formatTime(dateObj, timeZone = undefined) {
+function formatTime(date, timeZone = undefined) {
   // en-US: uses 12-hour time with AM/PM
   // timeZone: timeZone  == timeZone --> just because I used the same name
-  return dateObj.toLocaleTimeString("en-US", {
+  return date.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     timeZone,

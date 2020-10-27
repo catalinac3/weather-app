@@ -28,6 +28,13 @@ h1 {
   position: relative;
 }
 
+/* .light-theme {
+  color: "#fff";
+}
+
+.dark-theme {
+  color:black;
+} */
 .card-footer span {
   display: inline-block;
   margin: 0 10px;

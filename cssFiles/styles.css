@@ -24,17 +24,13 @@ h1 {
   max-width: 500px;
   margin: 40px auto;
 }
+.card-footer .card-header {
+  background-color: "#FFF";
+}
 .card-body {
   position: relative;
 }
 
-/* .light-theme {
-  color: "#fff";
-}
-
-.dark-theme {
-  color:black;
-} */
 .card-footer span {
   display: inline-block;
   margin: 0 10px;
@@ -58,4 +54,3 @@ h1 {
 #local-date-display {
   font-size: small;
 }
-

@@ -1,8 +1,3 @@
-// TODO :
-// Arrange that the house is change back to normal, (when here in munich is dark
-// and you want to go to a placer where there is sun, the hause and letters
-// in the card are visible)
-
 /**
  * This function changes the color of the background-sky,
  * according to the actual time, sunset and sunrise time.
@@ -21,24 +16,18 @@ function skyColor(sunrise, sunset, offsetTime) {
   const sunriseInMinutes = timeConversion(sunrise, offsetTime, true);
   const sunsetInMinutes = timeConversion(sunset, offsetTime, true);
 
-  const startSunrise = sunriseInMinutes - 30;
-  const endSunrise = sunriseInMinutes + 30;
+  const startSunrise = sunriseInMinutes - 60;
+  const endSunrise = sunriseInMinutes + 60;
   const aroundSunrise = endSunrise - startSunrise;
 
-  const startSunset = sunsetInMinutes - 30;
+  const startSunset = sunsetInMinutes - 60;
   const day = startSunset - endSunrise;
-  const endSunset = sunsetInMinutes + 30;
+  const endSunset = sunsetInMinutes + 60;
 
   const aroundSunset = endSunset - startSunset;
   // A day has 1440 min: 60*24
 
-  // console.log("Sunrise: ", sunriseInMinutes);
-  // console.log("startSunset: ", startSunset);
-  // console.log("day:", day);
-  // console.log("startsunset", startSunset);
-
   // night
-
   if (
     timeInMinutes < startSunrise ||
     (timeInMinutes > endSunset && timeInMinutes <= 1440)
@@ -46,65 +35,51 @@ function skyColor(sunrise, sunset, offsetTime) {
     cardBody.style.color = "#fff";
     imageHouse.style.filter = "invert(0.9)";
     cardBody.style.backgroundImage = skyColors[1];
-    //console.log("color 1 is on ");
+    console.log("color 1 is on ");
   }
-
   // end night
   // sunrise
   else if (timeInMinutes < startSunrise + aroundSunrise / 3) {
-    cardBody.style.backgroundImage = skyColors[5];
+    cardBody.style.backgroundImage = skyColors[2];
     cardBody.style.color = "#fff";
     imageHouse.style.filter = "sepia(0.6)";
-    console.log("color 5 is on ");
-  } else if (timeInMinutes < startSunrise + (aroundSunrise / 3) * 2) {
-    cardBody.style.backgroundImage = skyColors[7];
-    cardBody.style.color = "black";
-    imageHouse.style.filter = "none";
-    console.log("color 7 is on ");
-  } else if (timeInMinutes < startSunrise + aroundSunrise) {
-    cardBody.style.backgroundImage = skyColors[9];
-    cardBody.style.color = "black";
-    imageHouse.style.filter = "none";
-    console.log("color 9 is on ");
+    console.log("color 2 is on ");
   }
-  // end sunrise
-  // day
-  else if (timeInMinutes < sunriseInMinutes + day / 3) {
+  // section with color: black;  & filer: none
+  else if (timeInMinutes < startSunset + (aroundSunset / 3) * 2) {
+    cardBody.style.color = "black";
+    imageHouse.style.filter = "none";
+    if (timeInMinutes < startSunrise + (aroundSunrise / 3) * 2) {
+      cardBody.style.backgroundImage = skyColors[3];
+      console.log("color 3 is on ");
+    } else if (timeInMinutes < endSunrise) {
+      cardBody.style.backgroundImage = skyColors[4];
+      console.log("color 4 is on ");
+    }
+    // end sunrise
+    // day
+    else if (timeInMinutes < sunriseInMinutes + day / 3) {
+      cardBody.style.backgroundImage = skyColors[5];
+      console.log("color 5 is on ");
+    } else if (timeInMinutes < sunriseInMinutes + (day / 3) * 2) {
+      cardBody.style.backgroundImage = skyColors[6];
+      console.log("color 6 is on ");
+    } else if (timeInMinutes < startSunset) {
+      cardBody.style.backgroundImage = skyColors[7];
+      console.log("color 7 is on ");
+      // end day
+      // sunset
+    } else if (timeInMinutes < startSunset + aroundSunset / 3) {
+      cardBody.style.backgroundImage = skyColors[8];
+      console.log("color 8 is on ");
+    } else if (timeInMinutes < startSunset + (aroundSunset / 3) * 2) {
+      cardBody.style.backgroundImage = skyColors[9];
+      console.log("color 9 is on ");
+    }
+    // end section with color: black;  & filer: none
+  } else if (timeInMinutes < endSunset) {
     cardBody.style.backgroundImage = skyColors[10];
-    cardBody.style.color = "black";
-    imageHouse.style.filter = "none";
-    cardFooter.style.backgroundColor = "#FFF";
-    cardHeader.style.backgroundColor = "#FFF";
     console.log("color 10 is on ");
-  } else if (timeInMinutes < sunriseInMinutes + (day / 3) * 2) {
-    cardBody.style.backgroundImage = skyColors[11];
-    cardBody.style.color = "black";
-    imageHouse.style.filter = "none";
-    cardFooter.style.backgroundColor = "#FFF";
-    cardHeader.style.backgroundColor = "#FFF";
-    console.log("color 11 is on ");
-  } else if (timeInMinutes < startSunset) {
-    cardBody.style.backgroundImage = skyColors[12];
-    cardBody.style.color = "black";
-    imageHouse.style.filter = "none";
-    cardFooter.style.backgroundColor = "#FFF";
-    cardHeader.style.backgroundColor = "#FFF";
-    console.log("color 12 is on ");
-    // end day
-    // sunset
-  } else if (timeInMinutes < startSunset + aroundSunset / 3) {
-    cardBody.style.backgroundImage = skyColors[15];
-    cardBody.style.color = "black";
-    imageHouse.style.filter = "none";
-    console.log("color 15 is on ");
-  } else if (timeInMinutes < startSunset + (aroundSunset / 3) * 2) {
-    cardBody.style.backgroundImage = skyColors[17];
-    cardBody.style.color = "black";
-    imageHouse.style.filter = "none";
-    console.log("color 17 is on ");
-  } else if (timeInMinutes < startSunset + aroundSunset) {
-    cardBody.style.backgroundImage = skyColors[22];
-    console.log("color 22 is on ");
     imageHouse.style.filter = "invert(0.9)";
     cardBody.style.color = "#fff";
   }

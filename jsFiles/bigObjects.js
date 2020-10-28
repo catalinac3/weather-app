@@ -19,20 +19,20 @@ const iconEquivalence = {
 
 // How the colors where selected:
 // night:  1
-// around sunrise: 5, 7 (sunrise),9
-// day: 10, 11, 12,
-// around sunset: 15, 17 (sunset), 22
+// around sunrise: 2, 3 (sunrise),4
+// day: 5, 6, 7,
+// around sunset: 8, 9 (sunset), 10
 const skyColors = {
   1: "linear-gradient(to bottom, #020111 85%,#191621 100%)",
-  5: "linear-gradient(to bottom, #40405c 0%,#6f71aa 80%,#8a76ab 100%)",
-  7: "linear-gradient(to bottom, #757abf 0%,#8583be 60%,#eab0d1 100%)",
-  9: "linear-gradient(to bottom, #94c5f8 1%,#a6e6ff 70%,#b1b5ea 100%)",
-  10: "linear-gradient(to bottom, #b7eaff 0%,#94dfff 100%)",
-  11: "linear-gradient(to bottom, #9be2fe 0%,#67d1fb 100%)",
-  12: "linear-gradient(to bottom, #90dffe 0%,#38a3d1 100%)",
-  15: "linear-gradient(to bottom, #2473ab 0%,#1e528e 70%,#5b7983 100%)",
-  17: "linear-gradient(to bottom, #1e528e 0%,#728a7c 50%,#e9ce5d 100%)",
-  22: "linear-gradient(to bottom, #090401 50%,#4B1D06 100%)",
+  2: "linear-gradient(to bottom, #40405c 0%,#6f71aa 80%,#8a76ab 100%)",
+  3: "linear-gradient(to bottom, #757abf 0%,#8583be 60%,#eab0d1 100%)",
+  4: "linear-gradient(to bottom, #94c5f8 1%,#a6e6ff 70%,#b1b5ea 100%)",
+  5: "linear-gradient(to bottom, #b7eaff 0%,#94dfff 100%)",
+  6: "linear-gradient(to bottom, #9be2fe 0%,#67d1fb 100%)",
+  7: "linear-gradient(to bottom, #90dffe 0%,#38a3d1 100%)",
+  8: "linear-gradient(to bottom, #2473ab 0%,#1e528e 70%,#5b7983 100%)",
+  9: "linear-gradient(to bottom, #1e528e 0%,#728a7c 50%,#e9ce5d 100%)",
+  10: "linear-gradient(to bottom, #090401 50%,#4B1D06 100%)",
 };
 
 const isoCountries = {

@@ -56,13 +56,13 @@ function dateTimeDisplay(date) {
  * @param {boolean} minutesFormat - false default, true when the time is needed in minutes
  */
 
-function timeConversion(dateInfo, offsetTime, minutesFormat = false) {
+function timeConversion(dateInfo, offsetTime, inMinutes = false) {
   const dateMilliseconds =
     typeof dateInfo == "number" ? dateInfo * 1000 : dateInfo.getTime();
   // When dateInfo is a number, dateInfo is a timestamp, multiplication *1000 is because
   // the timeStamp and offsetTime are in second and the Date object expects miliseconds.
   const dateWithOffset = new Date(dateMilliseconds + offsetTime * 1000);
-  if (minutesFormat) {
+  if (inMinutes) {
     return dateWithOffset.getUTCHours() * 60 + dateWithOffset.getUTCMinutes();
   }
   return formatTime(dateWithOffset, "UTC");

@@ -87,15 +87,15 @@ function formatTime(date, timeZone = undefined) {
 
 /**
  * handles the alert error of geolocation.getCurrentPosition()
- * @param {
- * } error
+ * @param {object} error - contains information about the error
  */
 function handleErrorGeo(error) {
   if (error.code == 1) {
-    const randomCity = cities[Math.floor(Math.random() * cities.length)]
+    const randomCity = cities[Math.floor(Math.random() * cities.length)];
     const api = `${apiRootUrl}weather?q=${randomCity}&appid=${KEY}&units=metric`;
     fetchData(api);
   }
+  alertError(error);
 }
 
 /**

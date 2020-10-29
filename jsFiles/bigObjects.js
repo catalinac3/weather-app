@@ -1,4 +1,4 @@
-const cities = ["munich", "tokio", "auckland", "seoul", "paris", "singapore", "chicago"]
+const cities = ["munich", "tokio", "auckland", "seoul", "paris", "singapore", "chicago", "vancouver"]
 
 const iconEquivalence = {
   "04d": "cloudy-day-3",

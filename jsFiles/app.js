@@ -15,6 +15,14 @@ const windSpeed = document.getElementById("wind-speed");
 const weatherIcon = document.getElementById("weather-icon");
 const rainIcon = document.getElementById("rain-icon");
 
+// constants for card design (used in skyColor())
+const cardBody = document.querySelector(".card-body");
+const card = document.querySelector(".card");
+const cardHeader = document.querySelector(".card-header");
+const cardHeading = document.querySelector("h1");
+const cardFooter = document.querySelector(".card-footer");
+const imageHouse = document.querySelector("#house-img");
+
 const form = document.querySelector("#city-search-form");
 const inputElement = document.querySelector("#city-input");
 
@@ -65,6 +73,7 @@ function fetchData(apiUrl, searchCity = false) {
 
       sunriseTime.innerHTML = timeConversion(sunrise, offsetTime);
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
+      skyColor(sunrise, sunset, offsetTime);
       if (searchCity) {
         searchLocationTimeElement.innerHTML = timeConversion(
           currentDateUserLocation,

@@ -46,19 +46,26 @@ function dateTimeDisplay(date) {
 
 /**
  * This function converts timestamp or a date object,
- * adds the offset time and returns a displayable time --> hh:mm AM/PM
+ * adds the offset time and returns a time in minutes or
+ * a displayable time --> hh:mm AM/PM
  * Currently use for the sunrise and sunset time stamps
  * and to display the time of the searched city
  *
  * @param {number or object} dateInfo - unix, contains information about the time.
  * @param {number} offsetTime - is the seconds a certain time zone is ahead of or behind UTC.
+ * @param {boolean} minutesFormat - false default, true when the time is needed in minutes
  */
-function timeConversion(dateInfo, offsetTime) {
-  const time =
+
+function timeConversion(dateInfo, offsetTime, inMinutes = false) {
+  const dateMilliseconds =
     typeof dateInfo == "number" ? dateInfo * 1000 : dateInfo.getTime();
   // When dateInfo is a number, dateInfo is a timestamp, multiplication *1000 is because
   // the timeStamp and offsetTime are in second and the Date object expects miliseconds.
-  return formatTime(new Date(time + offsetTime * 1000), "UTC");
+  const dateWithOffset = new Date(dateMilliseconds + offsetTime * 1000);
+  if (inMinutes) {
+    return dateWithOffset.getUTCHours() * 60 + dateWithOffset.getUTCMinutes();
+  }
+  return formatTime(dateWithOffset, "UTC");
 }
 
 /**

@@ -1,10 +1,10 @@
 # Weather-app
 
-Is a web site that displays the weather at the user's location. Additionally you can search the weather of another city
+It is a web site that displays the weather at the user's location. Additionally you can search the weather of another city
 
 ### Weather data:
 
-The data for this web page is collected from the OpenWeather API - Current weather and forecast - free plan. <br>
+The data for this web page is collected from the <b>OpenWeather API</b> - Current weather and forecast - free plan. <br>
 When the web page is loaded. The data is received in a json file.
 
 | Data                | API Response                | units (API response)        |
@@ -31,7 +31,7 @@ The object isoCountries, with country names and codes was copied from https://gi
 The main weather icon in the app was made by amCharts https://www.amcharts.com/free-animated-svg-weather-icons/, except for the atmosphere icon, that comes from open weather api.
 https://openweathermap.org/weather-conditions.
 
-### Icons organization on Open Weather API - Animated icons downloaded from amCharts:
+### Icons organization on Open Weather API - Animated icons downloaded from <b>amCharts</b>:
 
 | icons      | Description                    | Animated icons (amCharts)   |
 | ---------- | ------------------------------ | --------------------------- |
@@ -47,3 +47,6 @@ https://openweathermap.org/weather-conditions.
 
 <br>
 In icons i.e. 11d, 11n, d=day, n=night.
+
+### Background colors:
+sky colors where copied from https://codepen.io/billyysea/pen/whjbK

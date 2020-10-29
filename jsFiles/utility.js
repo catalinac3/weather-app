@@ -94,8 +94,9 @@ function handleErrorGeo(error) {
     const randomCity = cities[Math.floor(Math.random() * cities.length)];
     const api = `${apiRootUrl}weather?q=${randomCity}&appid=${KEY}&units=metric`;
     fetchData(api);
+  } else {
+    alertError(error);
   }
-  alertError(error);
 }
 
 /**

@@ -37,7 +37,7 @@ dateTimeDisplay(currentDateUserLocation);
 // HTML Geolocation API from the browser - no web request!
 navigator.geolocation.getCurrentPosition(
   displayWeatherUserLocation,
-  alertError
+  handleErrorGeo
 );
 
 // -----------DISPLAYING THE WEATHER IN CITY SEARCHED------------------------------
@@ -60,6 +60,13 @@ function fetchData(apiUrl, searchCity = false) {
     // of an asynchronous operation and its resulting value.
     .then((data) => {
       console.log(data);
+      // this code reports that city wasn't found
+      // because with code 404, it doesn't go directly to catch
+      // and it breakes with not finding temp in data.main.
+      if (data.cod == 404) {
+        alertError(data);
+        return;
+      }
       // when the object has key, value pairs, like data.main
       // properties can be store: const {property} = object
       // for easy access, long form: data.main.property, this is call destructuring.

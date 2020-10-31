@@ -20,6 +20,10 @@ h1 {
   font-family: "Kalam", cursive;
 }
 
+.input-group {
+  width: auto;
+}
+
 .card {
   max-width: 500px;
   margin: 40px auto;
@@ -53,4 +57,12 @@ h1 {
 
 #local-date-display {
   font-size: small;
+}
+
+/* -------------------responsiveness ------------------------------*/
+@media screen and (max-width: 523px) {
+  .card {
+    max-width: 90%;
+    min-width: 340px;
+  }
 }

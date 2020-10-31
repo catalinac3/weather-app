@@ -44,9 +44,10 @@
 
         <div class="card-body">
           <img id="house-img" src="img/house.png" />
+          <!-- <div class="container"> -->
           <div class="row">
-            <div class="col-7">
-              <form id="city-search-form" class="form-inline">
+            <div class="col-sm-7">
+              <form id="city-search-form" class="input-group">
                 <!-- class="form-inline, place the elements in one line" -->
                 <input
                   id="city-input"
@@ -55,13 +56,16 @@
                   placeholder="city"
                   required
                 />
-                <button class="btn btn-outline-secondary" type="submit">
-                  <i class="fas fa-search-location"></i>
-                </button>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fas fa-search-location"></i>
+                  </button>
+                </div>
               </form>
             </div>
-            <div class="col-5"></div>
+            <div class="col-sm-5"></div>
           </div>
+          <!-- </div> -->
           <div class="row">
             <div class="col-1"></div>
             <div class="col-7 text-right">

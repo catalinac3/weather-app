@@ -55,18 +55,21 @@ function fetchData(apiUrl, searchCity = false) {
     // the fetch() method instructs the web browsers to send a request to a URL.
     // Response format from Open Weather api is Json by default.
     // free Open weather plan has less than60 calls/min
-    .then((response) => response.json())
+    .then((response) => {
+      // this code reports that city not found
+      // because of the response.status 404 (error code),
+      // throw make it skips directly to the catch statement and the error handling.
+      // rejects the promise. All this to avoid that it breakes and report: "not finding temp in data.main."
+      if (response.status == 404) {
+        // gives the error a message
+        throw new Error("City not found");
+      }
+      return response.json();
+    })
     // data --> Promise object represents the eventual completion (or failure)
     // of an asynchronous operation and its resulting value.
     .then((data) => {
       console.log(data);
-      // this code reports that city wasn't found
-      // because with code 404, it doesn't go directly to catch
-      // and it breakes with not finding temp in data.main.
-      if (data.cod == 404) {
-        alertError(data);
-        return;
-      }
       // when the object has key, value pairs, like data.main
       // properties can be store: const {property} = object
       // for easy access, long form: data.main.property, this is call destructuring.
@@ -100,5 +103,8 @@ function fetchData(apiUrl, searchCity = false) {
         ? "fas fa-umbrella"
         : "fas fa-umbrella-beach";
     })
-    .catch((error) => alertError(error));
+    .catch((error) => {
+      console.log(error);
+      alertError(error);
+    });
 }

@@ -35,7 +35,6 @@ function skyColor(sunrise, sunset, offsetTime) {
     cardBody.style.color = "#fff";
     imageHouse.style.filter = "invert(0.9)";
     cardBody.style.backgroundImage = skyColors[1];
-    console.log("color 1 is on ");
   }
   // end night
   // sunrise
@@ -43,7 +42,6 @@ function skyColor(sunrise, sunset, offsetTime) {
     cardBody.style.backgroundImage = skyColors[2];
     cardBody.style.color = "#fff";
     imageHouse.style.filter = "sepia(0.6)";
-    console.log("color 2 is on ");
   }
   // section with color: black;  & filer: none
   else if (timeInMinutes < startSunset + (aroundSunset / 3) * 2) {
@@ -51,35 +49,27 @@ function skyColor(sunrise, sunset, offsetTime) {
     imageHouse.style.filter = "none";
     if (timeInMinutes < startSunrise + (aroundSunrise / 3) * 2) {
       cardBody.style.backgroundImage = skyColors[3];
-      console.log("color 3 is on ");
     } else if (timeInMinutes < endSunrise) {
       cardBody.style.backgroundImage = skyColors[4];
-      console.log("color 4 is on ");
     }
     // end sunrise
     // day
     else if (timeInMinutes < sunriseInMinutes + day / 3) {
       cardBody.style.backgroundImage = skyColors[5];
-      console.log("color 5 is on ");
     } else if (timeInMinutes < sunriseInMinutes + (day / 3) * 2) {
       cardBody.style.backgroundImage = skyColors[6];
-      console.log("color 6 is on ");
     } else if (timeInMinutes < startSunset) {
       cardBody.style.backgroundImage = skyColors[7];
-      console.log("color 7 is on ");
       // end day
       // sunset
     } else if (timeInMinutes < startSunset + aroundSunset / 3) {
       cardBody.style.backgroundImage = skyColors[8];
-      console.log("color 8 is on ");
     } else if (timeInMinutes < startSunset + (aroundSunset / 3) * 2) {
       cardBody.style.backgroundImage = skyColors[9];
-      console.log("color 9 is on ");
     }
     // end section with color: black;  & filer: none
   } else if (timeInMinutes < endSunset) {
     cardBody.style.backgroundImage = skyColors[10];
-    console.log("color 10 is on ");
     imageHouse.style.filter = "invert(0.9)";
     cardBody.style.color = "#fff";
   }

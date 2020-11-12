@@ -86,7 +86,21 @@ function formatTime(date, timeZone = undefined) {
 }
 
 /**
- * handles the alert error messages of fetchData() and geolocation.getCurrentPosition()
+ * handles the alert error of geolocation.getCurrentPosition()
+ * @param {object} error - contains information about the error
+ */
+function handleErrorGeo(error) {
+  if (error.code == 1) {
+    const randomCity = cities[Math.floor(Math.random() * cities.length)];
+    const api = `${apiRootUrl}weather?q=${randomCity}&appid=${KEY}&units=metric`;
+    fetchData(api);
+  } else {
+    alertError(error);
+  }
+}
+
+/**
+ * handles the alert error messages of fetchData()
  *
  * @param {object} error - contains information about the error
  */

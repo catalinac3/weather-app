@@ -1,3 +1,5 @@
+const cities = ["munich", "tokio", "auckland", "seoul", "paris", "singapore", "chicago", "vancouver"]
+
 const iconEquivalence = {
   "04d": "cloudy-day-3",
   "04n": "cloudy-night-3",
@@ -11,8 +13,8 @@ const iconEquivalence = {
   "13n": "snowy-5",
   "10d": "rainy-3",
   "10n": "rainy-5",
-  "9d": "rainy-7",
-  "9n": "rainy-7",
+  "09d": "rainy-7",
+  "09n": "rainy-7",
   "11d": "thunder",
   "11n": "thunder",
 };

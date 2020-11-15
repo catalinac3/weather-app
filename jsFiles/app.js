@@ -9,7 +9,7 @@ const humidityElement = document.getElementById("humidity");
 const sunriseTime = document.getElementById("sunrise-time");
 const sunsetTime = document.getElementById("sunset-time");
 const countryNameElement = document.getElementById("country-name");
-const countryIdElement = document.getElementById("country-id")
+const countryIdElement = document.getElementById("country-id");
 const city = document.getElementById("city");
 const rainVolume = document.getElementById("rain-volume");
 const weatherDescription = document.getElementById("weather-description");
@@ -92,7 +92,7 @@ function fetchData(apiUrl, searchCity = false) {
           offsetTime
         );
       }
-      countryIdElement.innerHTML = country
+      countryIdElement.innerHTML = country;
       countryNameElement.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;

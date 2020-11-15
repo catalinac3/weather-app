@@ -60,8 +60,8 @@ h1 {
   font-size: small;
 }
 
-#local-date::before{
-  content: "Local date: "
+#local-date::before {
+  content: "Local date: ";
 }
 
 #local-time::before {
@@ -81,8 +81,8 @@ h1 {
     overflow: hidden;
   }
 
-  #local-date::before{
-    content: "Date: "
+  #local-date::before {
+    content: "Date: ";
   }
 
   #local-time::before {
@@ -94,6 +94,6 @@ h1 {
   }
 
   #country-id {
-    display:inline;
+    display: inline;
   }
 }

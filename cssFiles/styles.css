@@ -26,7 +26,8 @@ h1 {
 
 .card {
   max-width: 500px;
-  margin: 40px auto;
+  min-width: 300px;
+  margin: 80px auto;
 }
 .card-footer .card-header {
   background-color: "#FFF";
@@ -59,10 +60,40 @@ h1 {
   font-size: small;
 }
 
+#local-date::before{
+  content: "Local date: "
+}
+
+#local-time::before {
+  content: "local time: ";
+}
+#country-id {
+  display: none;
+}
+
 /* -------------------responsiveness ------------------------------*/
 @media screen and (max-width: 523px) {
+  h1 {
+    font-size: 1.8em;
+  }
   .card {
-    max-width: 90%;
-    min-width: 340px;
+    max-width: 80%;
+    overflow: hidden;
+  }
+
+  #local-date::before{
+    content: "Date: "
+  }
+
+  #local-time::before {
+    content: "time: ";
+  }
+
+  #country-name {
+    display: none;
+  }
+
+  #country-id {
+    display:inline;
   }
 }

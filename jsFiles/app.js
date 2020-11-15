@@ -1,4 +1,5 @@
-const localDateTimeElement = document.getElementById("local-date-display");
+const localDateElement = document.getElementById("local-date");
+const localTimeElement = document.getElementById("local-time");
 const searchLocationTimeElement = document.getElementById(
   "search-location-time"
 );
@@ -7,7 +8,8 @@ const feelTemperature = document.getElementById("feels-like");
 const humidityElement = document.getElementById("humidity");
 const sunriseTime = document.getElementById("sunrise-time");
 const sunsetTime = document.getElementById("sunset-time");
-const countryElement = document.getElementById("country");
+const countryNameElement = document.getElementById("country-name");
+const countryIdElement = document.getElementById("country-id")
 const city = document.getElementById("city");
 const rainVolume = document.getElementById("rain-volume");
 const weatherDescription = document.getElementById("weather-description");
@@ -80,7 +82,8 @@ function fetchData(apiUrl, searchCity = false) {
           offsetTime
         );
       }
-      countryElement.innerHTML = countryCodeConversion(country);
+      countryIdElement.innerHTML = country
+      countryNameElement.innerHTML = countryCodeConversion(country);
       city.innerHTML = data.name;
       windSpeed.innerHTML = ` ${(data.wind.speed * 3.6).toFixed(1)}km/h`;
 

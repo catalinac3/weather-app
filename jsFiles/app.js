@@ -39,7 +39,7 @@ dateTimeDisplay(currentDateUserLocation);
 // HTML Geolocation API from the browser - no web request!
 navigator.geolocation.getCurrentPosition(
   displayWeatherUserLocation,
-  alertError
+  handleErrorGeo
 );
 
 // -----------DISPLAYING THE WEATHER IN CITY SEARCHED------------------------------
@@ -57,7 +57,17 @@ function fetchData(apiUrl, searchCity = false) {
     // the fetch() method instructs the web browsers to send a request to a URL.
     // Response format from Open Weather api is Json by default.
     // free Open weather plan has less than60 calls/min
-    .then((response) => response.json())
+    .then((response) => {
+      // this code reports that city not found
+      // because of the response.status 404 (error code),
+      // throw make it skips directly to the catch statement and the error handling.
+      // rejects the promise. All this to avoid that it breakes and report: "not finding temp in data.main."
+      if (response.status == 404) {
+        // gives the error a message
+        throw new Error("City not found");
+      }
+      return response.json();
+    })
     // data --> Promise object represents the eventual completion (or failure)
     // of an asynchronous operation and its resulting value.
     .then((data) => {
@@ -96,5 +106,8 @@ function fetchData(apiUrl, searchCity = false) {
         ? "fas fa-umbrella"
         : "fas fa-umbrella-beach";
     })
-    .catch((error) => alertError(error));
+    .catch((error) => {
+      console.log(error);
+      alertError(error);
+    });
 }

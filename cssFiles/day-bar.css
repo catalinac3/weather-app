@@ -1,0 +1,76 @@
+/*colors of the bar:
+blue #020113
+yellow: #f1b950
+*/
+
+#bar-container {
+  display: flex;
+}
+
+#day-progress,
+#night-morning,
+#night-evening {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+  height: 25px;
+  padding: 1px;
+}
+
+#day-progress {
+  /* will be controlled with js */
+  width: 300px;
+  position: relative;
+}
+#night-morning {
+  /* will be controlled with js */
+  width: 60px;
+  border-left: 1px solid black;
+}
+#night-evening {
+  /* controlled with js */
+  width: 60px;
+  border-right: 1px solid black;
+}
+/* what goes inside the bar */
+#day-progress:after {
+  content: "";
+  display: block;
+  border-radius: 5px;
+  background: #f1b950;
+  width: 70%;
+  height: 100%;
+}
+#night-evening:after,
+#night-morning:after {
+  content: "";
+  display: block;
+  border-radius: 5px;
+  background: #020113;
+}
+
+#night-morning:after {
+  width: 100%;
+  height: 100%;
+}
+#night-evening:after {
+  /* controlled with js */
+  width: 0%;
+  height: 100%;
+}
+
+#sunset-time,
+#sunrise-time {
+  width: 70px;
+  text-align: center;
+  position: absolute;
+  bottom: -25px;
+}
+
+#sunset-time {
+  right: -30px;
+}
+
+#sunrise-time {
+  left: -30px;
+}

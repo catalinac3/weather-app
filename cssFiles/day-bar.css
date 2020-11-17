@@ -33,19 +33,19 @@ yellow: #f1b950
   border-right: 1px solid black;
 }
 /* what goes inside the bar */
+
+#day-progress:after, #night-evening:after, #night-morning:after {
+    content: "";
+    display: block;
+    border-radius: 5px;
+}
 #day-progress:after {
-  content: "";
-  display: block;
-  border-radius: 5px;
   background: #f1b950;
   width: 70%;
   height: 100%;
 }
 #night-evening:after,
 #night-morning:after {
-  content: "";
-  display: block;
-  border-radius: 5px;
   background: #020113;
 }
 

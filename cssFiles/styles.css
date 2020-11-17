@@ -36,10 +36,13 @@ h1 {
   position: relative;
 }
 
-.card-footer span {
+.card-footer {
+  height: 65px;
+}
+/* .card-footer span {
   display: inline-block;
   margin: 0 10px;
-}
+} */
 
 .main-temp {
   padding-right: 1px;

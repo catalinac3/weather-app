@@ -75,3 +75,28 @@ function skyColor(sunrise, sunset, offsetTime) {
   }
   // end sunset
 }
+
+/**
+ * This function changes the diamensions of the bar that displays 
+ * the progress of the day.
+ * @param {number} sunrise - time stamp with time info
+ * @param {number} sunset - time stamp with time info
+ * @param {number} offsetTime - offset time refering to the time zone
+ */
+function dayProgressBar (sunrise, sunset, offsetTime){
+  // A day has 1440 min: 60*24
+  const timeInMinutes = timeConversion(
+    currentDateUserLocation,
+    offsetTime,
+    true
+  );
+  const sunriseInMinute = timeConversion(sunrise, offsetTime, true);
+  const sunsetInMinutes = timeConversion(sunset, offsetTime, true);
+  
+  const timeInMinDay = sunsetInMinutes - sunriseInMinute;
+  const timeInMinAfterSunset = 1440 - sunsetInMinutes;
+
+  document.querySelector('#night-morning').style.width = `${sunriseInMinute/1440*100}%`;
+  document.querySelector('#day-progress').style.width =  `${timeInMinDay/1440*100}%`;
+  document.querySelector('#night-evening').style.width = `${timeInMinAfterSunset/1440*100}%`;
+} 

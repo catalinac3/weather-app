@@ -5,6 +5,8 @@ yellow: #f1b950
 
 #bar-container {
   display: flex;
+  width: 95%;
+  margin: 0 auto;
 }
 
 #day-progress,
@@ -18,26 +20,28 @@ yellow: #f1b950
 }
 
 #day-progress {
-  /* will be controlled with js */
-  width: 300px;
+  /* controlled with js */
+  width: 60%;
   position: relative;
 }
 #night-morning {
-  /* will be controlled with js */
-  width: 60px;
+  /* controlled with js */
+  width: 20%;
   border-left: 1px solid black;
 }
 #night-evening {
   /* controlled with js */
-  width: 60px;
+  width: 20%;
   border-right: 1px solid black;
 }
 /* what goes inside the bar */
 
-#day-progress:after, #night-evening:after, #night-morning:after {
-    content: "";
-    display: block;
-    border-radius: 5px;
+#day-progress:after,
+#night-evening:after,
+#night-morning:after {
+  content: "";
+  display: block;
+  border-radius: 5px;
 }
 #day-progress:after {
   background: #f1b950;

@@ -90,23 +90,42 @@ function dayProgressBar(sunrise, sunset, offsetTime) {
     offsetTime,
     true
   );
-  console.log(`current time in min: ${timeInMinutes}`);
+
   const sunriseInMinute = timeConversion(sunrise, offsetTime, true);
   const sunsetInMinutes = timeConversion(sunset, offsetTime, true);
   const timeInMinDay = sunsetInMinutes - sunriseInMinute;
+
   const timeInMinAfterSunset = 1440 - sunsetInMinutes;
 
   const barNightMorning = document.querySelector("#bar-night-morning");
   const barNightEvening = document.querySelector("#bar-night-evening");
   const barDayLight = document.querySelector("#bar-day-light");
 
+  // This codes displays the day-light-label.
+  if (timeInMinDay % 60 != 0) {
+    document.querySelector("#day-light-label").innerHTML = `${Math.floor(
+      timeInMinDay / 60
+    )}h, ${timeInMinDay % 60}min`;
+  } else {
+    document.querySelector("#day-light-label").innerHTML = `${Math.floor(
+      timeInMinDay / 60
+    )}h`;
+  }
+
+  // This code adjust the diamensions of the progress bar according to available data.
+  document.querySelector("#night-morning").style.width = `${
+    (sunriseInMinute / 1440) * 100
+  }%`;
+  document.querySelector("#day-light").style.width = `${
+    (timeInMinDay / 1440) * 100
+  }%`;
+  document.querySelector("#night-evening").style.width = `${
+    (timeInMinAfterSunset / 1440) * 100
+  }%`;
+
+  //This code adjust the bar width inside the progress bar.
   if (timeInMinutes < sunriseInMinute) {
     // the progress of the day lays in the first bar
-    console.log(
-      `bar-night-morning %:${((timeInMinutes / sunriseInMinute) * 100).toFixed(
-        1
-      )}`
-    );
     barNightMorning.style.width = `${(
       (timeInMinutes / sunriseInMinute) *
       100
@@ -128,14 +147,4 @@ function dayProgressBar(sunrise, sunset, offsetTime) {
       100
     ).toFixed(1)}%`;
   }
-
-  document.querySelector("#night-morning").style.width = `${
-    (sunriseInMinute / 1440) * 100
-  }%`;
-  document.querySelector("#day-light").style.width = `${
-    (timeInMinDay / 1440) * 100
-  }%`;
-  document.querySelector("#night-evening").style.width = `${
-    (timeInMinAfterSunset / 1440) * 100
-  }%`;
 }

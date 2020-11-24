@@ -13,6 +13,7 @@ body {
   background: url("../img/background_main.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: "Raleway", sans-serif;
+  min-width: 330px;
 }
 
 h1 {
@@ -26,7 +27,6 @@ h1 {
 
 .card {
   max-width: 500px;
-  min-width: 300px;
   margin: 80px auto;
 }
 .card-footer .card-header {
@@ -76,8 +76,10 @@ h1 {
     font-size: 1.8em;
   }
   .card {
-    max-width: 80%;
+    /*16 for each site*/
+    max-width: calc(100% - 32px);
     overflow: hidden;
+    margin-top: 16px;
   }
 
   #local-date::before {

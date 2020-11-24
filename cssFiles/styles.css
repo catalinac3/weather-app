@@ -13,6 +13,7 @@ body {
   background: url("../img/background_main.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: "Raleway", sans-serif;
+  min-width: 330px;
 }
 
 h1 {
@@ -20,9 +21,13 @@ h1 {
   font-family: "Kalam", cursive;
 }
 
+.input-group {
+  width: auto;
+}
+
 .card {
   max-width: 500px;
-  margin: 40px auto;
+  margin: 80px auto;
 }
 .card-footer .card-header {
   background-color: "#FFF";
@@ -53,4 +58,44 @@ h1 {
 
 #local-date-display {
   font-size: small;
+}
+
+#local-date::before {
+  content: "Local date: ";
+}
+
+#local-time::before {
+  content: "local time: ";
+}
+#country-id {
+  display: none;
+}
+
+/* -------------------responsiveness ------------------------------*/
+@media screen and (max-width: 523px) {
+  h1 {
+    font-size: 1.8em;
+  }
+  .card {
+    /*16 for each site*/
+    max-width: calc(100% - 32px);
+    overflow: hidden;
+    margin-top: 16px;
+  }
+
+  #local-date::before {
+    content: "Date: ";
+  }
+
+  #local-time::before {
+    content: "time: ";
+  }
+
+  #country-name {
+    display: none;
+  }
+
+  #country-id {
+    display: inline;
+  }
 }

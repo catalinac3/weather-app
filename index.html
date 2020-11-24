@@ -35,9 +35,11 @@
     <main>
       <div class="card">
         <div class="card-header">
-          <span id="local-date-display"></span>
+          <span id="local-date"></span>
+          <span id="local-time"></span>
           <h1 class="card-title">
-            <span id="city">---</span>, <span id="country">---</span>
+            <span id="city">---</span>, <span id="country-name"></span>
+            <span id="country-id"></span>
           </h1>
           <span id="search-location-time"></span>
         </div>
@@ -45,9 +47,8 @@
         <div class="card-body">
           <img id="house-img" src="img/house.png" />
           <div class="row">
-            <div class="col-7">
-              <form id="city-search-form" class="form-inline">
-                <!-- class="form-inline, place the elements in one line" -->
+            <div class="col-sm-7">
+              <form id="city-search-form" class="input-group">
                 <input
                   id="city-input"
                   type="text"
@@ -55,16 +56,18 @@
                   placeholder="city"
                   required
                 />
-                <button class="btn btn-outline-secondary" type="submit">
-                  <i class="fas fa-search-location"></i>
-                </button>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fas fa-search-location"></i>
+                  </button>
+                </div>
               </form>
             </div>
-            <div class="col-5"></div>
+            <div class="col-sm-5"></div>
           </div>
           <div class="row">
-            <div class="col-1"></div>
-            <div class="col-7 text-right">
+            <div class="hidden-xs col-sm-1"></div>
+            <div class="col-xs-12 col-sm-7 text-sm-right text-center">
               <div class="mb-3 mt-3">
                 <h2>
                   <span id="temperature" class="main-temp"> --- </span>
@@ -76,15 +79,15 @@
               </div>
               <div class="b-3" id="weather-description">---</div>
             </div>
-            <div class="col-4 text-right">
-              <div class="mb-5 mt-4">
+            <div class="hidden-xs col-sm-4 text-right">
+              <div class="mb-sm-5 mt-sm-4 mb-2 mt-2">
                 <span id="rain-volume"> --- </span>
                 <i id="rain-icon" aria-hidden="true"></i>
               </div>
-              <div class="mb-5">
+              <div class="mb-sm-5 mb-2">
                 <span>Wind:</span><span id="wind-speed"> --- </span>
               </div>
-              <div class="mb-5">
+              <div class="mb-5 pb-1">
                 <span>Hr:</span><span id="humidity"> --- </span>
               </div>
             </div>

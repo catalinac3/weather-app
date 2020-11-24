@@ -41,7 +41,8 @@ function dateTimeDisplay(date) {
   }/${date.getFullYear()}`;
 
   const time = formatTime(date);
-  localDateTimeElement.innerHTML = `Local date: ${dateToday}, local time: ${time}`;
+  localDateElement.innerHTML = dateToday;
+  localTimeElement.innerHTML = time;
 }
 
 /**

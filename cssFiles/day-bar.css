@@ -9,7 +9,7 @@ yellow: #f1b950
   margin: 0 auto;
 }
 
-#day-progress,
+#day-light,
 #night-morning,
 #night-evening {
   border-top: 1px solid black;
@@ -19,7 +19,7 @@ yellow: #f1b950
   padding: 1px;
 }
 
-#day-progress {
+#day-light {
   /* controlled with js */
   width: 60%;
   position: relative;
@@ -36,28 +36,30 @@ yellow: #f1b950
 }
 /* what goes inside the bar */
 
-#day-progress:after,
-#night-evening:after,
-#night-morning:after {
+#bar-day-light,
+#bar-night-morning,
+#bar-night-evening {
   content: "";
   display: block;
   border-radius: 5px;
 }
-#day-progress:after {
+#bar-day-light {
+  /* controlled with js */
   background: #f1b950;
   width: 70%;
   height: 100%;
 }
-#night-evening:after,
-#night-morning:after {
+#bar-night-evening,
+#bar-night-morning {
   background: #020113;
 }
 
-#night-morning:after {
+#bar-night-morning {
+  /* controlled with js */
   width: 100%;
   height: 100%;
 }
-#night-evening:after {
+#bar-night-evening {
   /* controlled with js */
   width: 0%;
   height: 100%;

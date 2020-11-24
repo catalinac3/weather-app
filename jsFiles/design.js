@@ -77,26 +77,65 @@ function skyColor(sunrise, sunset, offsetTime) {
 }
 
 /**
- * This function changes the diamensions of the bar that displays 
+ * This function changes the diamensions of the bar that displays
  * the progress of the day.
  * @param {number} sunrise - time stamp with time info
  * @param {number} sunset - time stamp with time info
  * @param {number} offsetTime - offset time refering to the time zone
  */
-function dayProgressBar (sunrise, sunset, offsetTime){
+function dayProgressBar(sunrise, sunset, offsetTime) {
   // A day has 1440 min: 60*24
   const timeInMinutes = timeConversion(
     currentDateUserLocation,
     offsetTime,
     true
   );
+  console.log(`current time in min: ${timeInMinutes}`);
   const sunriseInMinute = timeConversion(sunrise, offsetTime, true);
   const sunsetInMinutes = timeConversion(sunset, offsetTime, true);
-  
   const timeInMinDay = sunsetInMinutes - sunriseInMinute;
   const timeInMinAfterSunset = 1440 - sunsetInMinutes;
 
-  document.querySelector('#night-morning').style.width = `${sunriseInMinute/1440*100}%`;
-  document.querySelector('#day-progress').style.width =  `${timeInMinDay/1440*100}%`;
-  document.querySelector('#night-evening').style.width = `${timeInMinAfterSunset/1440*100}%`;
-} 
+  const barNightMorning = document.querySelector("#bar-night-morning");
+  const barNightEvening = document.querySelector("#bar-night-evening");
+  const barDayLight = document.querySelector("#bar-day-light");
+
+  if (timeInMinutes < sunriseInMinute) {
+    // the progress of the day lays in the first bar
+    console.log(
+      `bar-night-morning %:${((timeInMinutes / sunriseInMinute) * 100).toFixed(
+        1
+      )}`
+    );
+    barNightMorning.style.width = `${(
+      (timeInMinutes / sunriseInMinute) *
+      100
+    ).toFixed(1)}%`;
+    barNightEvening.style.width = "0%";
+    barDayLight.style.width = "0%";
+  } else if (timeInMinutes <= sunsetInMinutes) {
+    barDayLight.style.width = `${(
+      ((timeInMinutes - sunriseInMinute) / timeInMinDay) *
+      100
+    ).toFixed(1)}%`;
+    barNightMorning.style.width = "100%";
+    barNightEvening.style.width = "0%";
+  } else {
+    barNightMorning.style.width = "100%";
+    barDayLight.style.width = "100%";
+    barNightEvening.style.width = `${(
+      ((timeInMinutes - sunsetInMinutes) / timeInMinAfterSunset) *
+      100
+    ).toFixed(1)}%`;
+  }
+
+  document.querySelector("#night-morning").style.width = `${
+    (sunriseInMinute / 1440) * 100
+  }%`;
+  document.querySelector("#day-light").style.width = `${
+    (timeInMinDay / 1440) * 100
+  }%`;
+  document.querySelector("#night-evening").style.width = `${
+    (timeInMinAfterSunset / 1440) * 100
+  }%`;
+}

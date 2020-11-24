@@ -6,7 +6,7 @@ yellow: #f1b950
 #bar-container {
   display: flex;
   width: 95%;
-  margin: 0 auto;
+  margin: 15px auto;
 }
 
 #day-light,
@@ -63,6 +63,17 @@ yellow: #f1b950
   /* controlled with js */
   width: 0%;
   height: 100%;
+}
+
+#day-light-label {
+  width: 140px;
+  position: absolute;
+  bottom: 23px;
+  left: 0px;
+  font-size: 0.9rem;
+}
+#day-light-label::before {
+  content: "Day light: ";
 }
 
 #sunset-time,

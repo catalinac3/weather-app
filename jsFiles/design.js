@@ -77,8 +77,10 @@ function skyColor(sunrise, sunset, offsetTime) {
 }
 
 /**
- * This function changes the diamensions of the bar that displays
- * the progress of the day.
+ * This function changes the diamensions of the progress bar according
+ * to the sunrise and sunset time, dividing it into three differently
+ * sized parts. It changes the filling of the bar, according to the current time,
+ * and it controls the display on the day light label above the bar
  * @param {number} sunrise - time stamp with time info
  * @param {number} sunset - time stamp with time info
  * @param {number} offsetTime - offset time refering to the time zone
@@ -112,7 +114,8 @@ function dayProgressBar(sunrise, sunset, offsetTime) {
     )}h`;
   }
 
-  // This code adjust the diamensions of the progress bar according to available data.
+  // This code adjust the diamensions of the progress bar
+  // according to times available (sunrise and sunset)
   document.querySelector("#night-morning").style.width = `${
     (sunriseInMinute / 1440) * 100
   }%`;
@@ -123,7 +126,7 @@ function dayProgressBar(sunrise, sunset, offsetTime) {
     (timeInMinAfterSunset / 1440) * 100
   }%`;
 
-  //This code adjust the bar width inside the progress bar.
+  //This code adjust the filling bar according to the current time.
   if (timeInMinutes < sunriseInMinute) {
     // the progress of the day lays in the first bar
     barNightMorning.style.width = `${(

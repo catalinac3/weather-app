@@ -1,6 +1,12 @@
 # Weather-app
 
-It is a web site that displays the weather at the user's location. Additionally you can search the weather of another city
+- It is a web site that displays the weather at the user's location. 
+- Additionally you can search the weather of another city.<br>
+- The design is responsive works for mobile and desktop.<br>
+- The app uses real weather data from the OpenWeather Api, and animated icons from amCharts.<br><br>
+
+The following information displays in more detail the different resources used on the Weather app.<br><br>
+
 
 ### Weather data:
 
@@ -49,4 +55,4 @@ https://openweathermap.org/weather-conditions.
 In icons i.e. 11d, 11n, d=day, n=night.
 
 ### Background colors:
-sky colors where copied from https://codepen.io/billyysea/pen/whjbK
+10 linear gradients where taken from https://codepen.io/billyysea/pen/whjbK to make the animation of the sky colors on the app.

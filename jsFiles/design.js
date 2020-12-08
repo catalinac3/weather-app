@@ -97,7 +97,7 @@ function dayProgressBar(sunrise, sunset, offsetTime) {
   const sunsetInMinutes = timeConversion(sunset, offsetTime, true);
   const timeInMinDay = sunsetInMinutes - sunriseInMinute;
 
-  const timeInMinAfterSunset = 1440 - sunsetInMinutes;
+  const timeInMinAfterSunset = 60*24 - sunsetInMinutes;
 
   const barNightMorning = document.querySelector("#bar-night-morning");
   const barNightEvening = document.querySelector("#bar-night-evening");

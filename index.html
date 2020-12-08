@@ -23,6 +23,8 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="cssFiles/day-bar.css" />
     <link rel="stylesheet" href="cssFiles/styles.css" />
 
     <script src="jsFiles/utility.js" type="text/javascript" defer></script>
@@ -53,7 +55,7 @@
                   id="city-input"
                   type="text"
                   class="form-control"
-                  placeholder="city"
+                  placeholder="city (i.e., rome or rome,it)"
                   required
                 />
                 <div class="input-group-append">
@@ -93,9 +95,21 @@
             </div>
           </div>
         </div>
-        <div class="card-footer text-center">
-          <span>sunrise: <span id="sunrise-time"> --- </span></span>
-          <span>sunset: <span id="sunset-time"> --- </span></span>
+        <div class="card-footer">
+          <div id="bar-container">
+            <div id="night-morning">
+              <div id="bar-night-morning"></div>
+            </div>
+            <div id="day-light">
+              <div id="bar-day-light"></div>
+              <div id="day-light-label">12h</div>
+              <div id="sunrise-time">6:00 AM</div>
+              <div id="sunset-time">6:00 PM</div>
+            </div>
+            <div id="night-evening">
+              <div id="bar-night-evening"></div>
+            </div>
+          </div>
         </div>
       </div>
       <footer></footer>

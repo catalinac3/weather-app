@@ -1,0 +1,93 @@
+/*colors of the bar:
+blue #020113
+yellow: #f1b950
+*/
+
+#bar-container {
+  display: flex;
+  width: 95%;
+  margin: 15px auto;
+}
+
+#day-light,
+#night-morning,
+#night-evening {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+  height: 25px;
+  padding: 1px;
+}
+
+#day-light {
+  /* controlled with js */
+  width: 60%;
+  position: relative;
+}
+#night-morning {
+  /* controlled with js */
+  width: 20%;
+  border-left: 1px solid black;
+}
+#night-evening {
+  /* controlled with js */
+  width: 20%;
+  border-right: 1px solid black;
+}
+/* what goes inside the bar */
+
+#bar-day-light,
+#bar-night-morning,
+#bar-night-evening {
+  content: "";
+  display: block;
+  border-radius: 5px;
+}
+#bar-day-light {
+  /* controlled with js */
+  background: #f1b950;
+  width: 70%;
+  height: 100%;
+}
+#bar-night-evening,
+#bar-night-morning {
+  background: #020113;
+}
+
+#bar-night-morning {
+  /* controlled with js */
+  width: 100%;
+  height: 100%;
+}
+#bar-night-evening {
+  /* controlled with js */
+  width: 0%;
+  height: 100%;
+}
+
+#day-light-label {
+  width: 140px;
+  position: absolute;
+  bottom: 23px;
+  left: 0px;
+  font-size: 0.9rem;
+}
+#day-light-label::before {
+  content: "Day light: ";
+}
+
+#sunset-time,
+#sunrise-time {
+  width: 70px;
+  text-align: center;
+  position: absolute;
+  bottom: -25px;
+}
+
+#sunset-time {
+  right: -30px;
+}
+
+#sunrise-time {
+  left: -30px;
+}

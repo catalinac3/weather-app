@@ -75,3 +75,79 @@ function skyColor(sunrise, sunset, offsetTime) {
   }
   // end sunset
 }
+
+/**
+ * This function changes the diamensions of the progress bar according
+ * to the sunrise and sunset time, dividing it into three differently
+ * sized parts. It changes the filling of the bar, according to the current time,
+ * and it controls the display on the day light label above the bar
+ * @param {number} sunrise - time stamp with time info
+ * @param {number} sunset - time stamp with time info
+ * @param {number} offsetTime - offset time refering to the time zone
+ */
+function dayProgressBar(sunrise, sunset, offsetTime) {
+  // A day has 1440 min: 60*24
+  const timeInMinutes = timeConversion(
+    currentDateUserLocation,
+    offsetTime,
+    true
+  );
+
+  const sunriseInMinute = timeConversion(sunrise, offsetTime, true);
+  const sunsetInMinutes = timeConversion(sunset, offsetTime, true);
+  const timeInMinDay = sunsetInMinutes - sunriseInMinute;
+
+  const timeInMinAfterSunset = 60*24 - sunsetInMinutes;
+
+  const barNightMorning = document.querySelector("#bar-night-morning");
+  const barNightEvening = document.querySelector("#bar-night-evening");
+  const barDayLight = document.querySelector("#bar-day-light");
+
+  // This codes displays the day-light-label.
+  if (timeInMinDay % 60 != 0) {
+    document.querySelector("#day-light-label").innerHTML = `${Math.floor(
+      timeInMinDay / 60
+    )}h, ${timeInMinDay % 60}min`;
+  } else {
+    document.querySelector("#day-light-label").innerHTML = `${Math.floor(
+      timeInMinDay / 60
+    )}h`;
+  }
+
+  // This code adjust the diamensions of the progress bar
+  // according to times available (sunrise and sunset)
+  document.querySelector("#night-morning").style.width = `${
+    (sunriseInMinute / 1440) * 100
+  }%`;
+  document.querySelector("#day-light").style.width = `${
+    (timeInMinDay / 1440) * 100
+  }%`;
+  document.querySelector("#night-evening").style.width = `${
+    (timeInMinAfterSunset / 1440) * 100
+  }%`;
+
+  //This code adjust the filling bar according to the current time.
+  if (timeInMinutes < sunriseInMinute) {
+    // the progress of the day lays in the first bar
+    barNightMorning.style.width = `${(
+      (timeInMinutes / sunriseInMinute) *
+      100
+    ).toFixed(1)}%`;
+    barNightEvening.style.width = "0%";
+    barDayLight.style.width = "0%";
+  } else if (timeInMinutes <= sunsetInMinutes) {
+    barDayLight.style.width = `${(
+      ((timeInMinutes - sunriseInMinute) / timeInMinDay) *
+      100
+    ).toFixed(1)}%`;
+    barNightMorning.style.width = "100%";
+    barNightEvening.style.width = "0%";
+  } else {
+    barNightMorning.style.width = "100%";
+    barDayLight.style.width = "100%";
+    barNightEvening.style.width = `${(
+      ((timeInMinutes - sunsetInMinutes) / timeInMinAfterSunset) *
+      100
+    ).toFixed(1)}%`;
+  }
+}

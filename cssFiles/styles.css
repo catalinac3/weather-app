@@ -36,9 +36,8 @@ h1 {
   position: relative;
 }
 
-.card-footer span {
-  display: inline-block;
-  margin: 0 10px;
+.card-footer {
+  height: 80px;
 }
 
 .main-temp {

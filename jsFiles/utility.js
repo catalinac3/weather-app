@@ -10,6 +10,9 @@ function displayWeatherUserLocation(pos) {
   const longitude = pos.coords.longitude.toFixed(2);
   const apiUrl = `${apiRootUrl}weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
   fetchData(apiUrl);
+  // Apicall for daily forecast
+  const apiForecastUrl = `${apiRootUrl}onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly&appid=${KEY}&units=metric`;
+  fetchForcastData(apiForecastUrl);
 }
 
 /**

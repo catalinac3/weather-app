@@ -46,7 +46,7 @@ navigator.geolocation.getCurrentPosition(
 form.addEventListener("submit", search);
 // submit event works by pressing the button or pressing enter after making an input!
 
-//------------FETCHING WEATHER DATA FROM OPEN WEATHER API---------------------------
+//------------FETCHING CURRENT WEATHER DATA FROM OPEN WEATHER API---------------------------
 /**
  * @param {string} apiUrl - url
  * @param {boolean} searchCity - default value is false, true when the fetchData
@@ -71,7 +71,7 @@ function fetchData(apiUrl, searchCity = false) {
     // data --> Promise object represents the eventual completion (or failure)
     // of an asynchronous operation and its resulting value.
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       // when the object has key, value pairs, like data.main
       // properties can be store: const {property} = object
       // for easy access, long form: data.main.property, this is call destructuring.
@@ -110,5 +110,27 @@ function fetchData(apiUrl, searchCity = false) {
     .catch((error) => {
       console.log(error);
       alertError(error);
+    });
+}
+
+
+
+function fetchForcastData(apiForecastUrl) {
+  fetch(apiForecastUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("data from forecast");
+      console.log(data);
+      const days = [1, 2, 3];
+      days.forEach((elem) => {
+        document.querySelector(
+          `#temp-day-${elem}`
+        ).innerHTML = `${data.daily[elem].temp.day}°C`;
+        document.querySelector(`#descrip-day-${elem}`).innerHTML =
+          data.daily[elem].weather[0].description;
+        document.querySelector(`#icon-day-${elem}`).src = getIcon(
+          data.daily[elem].weather[0].icon
+        );
+      });
     });
 }

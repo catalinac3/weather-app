@@ -35,83 +35,132 @@
 
   <body>
     <main>
-      <div class="card">
-        <div class="card-header">
-          <span id="local-date"></span>
-          <span id="local-time"></span>
-          <h1 class="card-title">
-            <span id="city">---</span>, <span id="country-name"></span>
-            <span id="country-id"></span>
-          </h1>
-          <span id="search-location-time"></span>
-        </div>
+      <div class="all-cards">
+        <!-- todays weather card -->
+        <div class="main-card-parent">
+          <div class="main-card card">
+            <div class="card-header">
+              <span id="local-date"></span>
+              <span id="local-time"></span>
+              <h1 class="card-title">
+                <span id="city">---</span>, <span id="country-name"></span>
+                <span id="country-id"></span>
+              </h1>
+              <span id="search-location-time"></span>
+            </div>
 
-        <div class="card-body">
-          <img id="house-img" src="img/house.png" />
-          <div class="row">
-            <div class="col-sm-7">
-              <form id="city-search-form" class="input-group">
-                <input
-                  id="city-input"
-                  type="text"
-                  class="form-control"
-                  placeholder="city (i.e., rome or rome,it)"
-                  required
-                />
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="submit">
-                    <i class="fas fa-search-location"></i>
-                  </button>
+            <div class="card-body">
+              <img id="house-img" src="img/house.png" />
+              <div class="row">
+                <div class="col-sm-7">
+                  <form id="city-search-form" class="input-group">
+                    <input
+                      id="city-input"
+                      type="text"
+                      class="form-control"
+                      placeholder="city (i.e., rome or rome,it)"
+                      required
+                    />
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="submit">
+                        <i class="fas fa-search-location"></i>
+                      </button>
+                    </div>
+                  </form>
                 </div>
-              </form>
+                <div class="col-sm-5"></div>
+              </div>
+              <div class="row">
+                <div class="hidden-xs col-sm-1"></div>
+                <div class="col-xs-12 col-sm-7 text-sm-right text-center">
+                  <div class="mb-3 mt-3">
+                    <h2>
+                      <span id="temperature" class="main-temp"> --- </span>
+                      <img id="weather-icon" />
+                    </h2>
+                  </div>
+                  <div class="mb-3">
+                    feels like: <span id="feels-like">---</span>
+                  </div>
+                  <div class="b-3" id="weather-description">---</div>
+                </div>
+                <div class="hidden-xs col-sm-4 text-right">
+                  <div class="mb-sm-5 mt-sm-4 mb-2 mt-2">
+                    <span id="rain-volume"> --- </span>
+                    <i id="rain-icon" aria-hidden="true"></i>
+                  </div>
+                  <div class="mb-sm-5 mb-2">
+                    <span>Wind:</span><span id="wind-speed"> --- </span>
+                  </div>
+                  <div class="mb-5 pb-1">
+                    <span>Hr:</span><span id="humidity"> --- </span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-sm-5"></div>
-          </div>
-          <div class="row">
-            <div class="hidden-xs col-sm-1"></div>
-            <div class="col-xs-12 col-sm-7 text-sm-right text-center">
-              <div class="mb-3 mt-3">
-                <h2>
-                  <span id="temperature" class="main-temp"> --- </span>
-                  <img id="weather-icon" />
-                </h2>
-              </div>
-              <div class="mb-3">
-                feels like: <span id="feels-like">---</span>
-              </div>
-              <div class="b-3" id="weather-description">---</div>
-            </div>
-            <div class="hidden-xs col-sm-4 text-right">
-              <div class="mb-sm-5 mt-sm-4 mb-2 mt-2">
-                <span id="rain-volume"> --- </span>
-                <i id="rain-icon" aria-hidden="true"></i>
-              </div>
-              <div class="mb-sm-5 mb-2">
-                <span>Wind:</span><span id="wind-speed"> --- </span>
-              </div>
-              <div class="mb-5 pb-1">
-                <span>Hr:</span><span id="humidity"> --- </span>
+            <div class="card-footer">
+              <div id="bar-container">
+                <div id="night-morning">
+                  <div id="bar-night-morning"></div>
+                </div>
+                <div id="day-light">
+                  <div id="bar-day-light"></div>
+                  <div id="day-light-label">12h</div>
+                  <div id="sunrise-time">6:00 AM</div>
+                  <div id="sunset-time">6:00 PM</div>
+                </div>
+                <div id="night-evening">
+                  <div id="bar-night-evening"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="card-footer">
-          <div id="bar-container">
-            <div id="night-morning">
-              <div id="bar-night-morning"></div>
+        <!-- end of today's weather card  -->
+
+        <!-- forecast weather cards -->
+        <div class="side-cards">
+          <div class="day-card card">
+            <div class="card-header">
+              Tomorrow:
+              <span id="descrip-day-1"></span>
             </div>
-            <div id="day-light">
-              <div id="bar-day-light"></div>
-              <div id="day-light-label">12h</div>
-              <div id="sunrise-time">6:00 AM</div>
-              <div id="sunset-time">6:00 PM</div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <span id="temp-day-1"> --- </span>
+                <img id="icon-day-1" />
+              </h5>
             </div>
-            <div id="night-evening">
-              <div id="bar-night-evening"></div>
+          </div>
+
+          <div class="day-card card">
+            <div class="card-header">
+              The day after tomorrow: <span id="descrip-day-2"></span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <span id="temp-day-2"> --- </span>
+                <img id="icon-day-2" />
+              </h5>
+            </div>
+          </div>
+
+          <div class="day-card card">
+            <div class="card-header">
+              3 days from today:
+              <span id="descrip-day-3"></span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <span id="temp-day-3"> --- </span>
+                <img id="icon-day-3" />
+              </h5>
             </div>
           </div>
         </div>
       </div>
+      <!-- end of forecast weather cards -->
+
       <footer></footer>
     </main>
   </body>

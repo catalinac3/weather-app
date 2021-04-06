@@ -30,8 +30,16 @@ h1 {
 }
 
 .main-card-parent {
-  width: 500px;
+  max-width: 500px;
   margin: 10vh 5vh 10vh 20vh;
+}
+
+.main-card {
+  /* makes the main card as height as the side cards */
+  min-height: calc(100% - 1em);
+  width: 500px;
+  margin-bottom: 1em;
+  box-shadow: 3px 3px 1px darkgrey;
 }
 
 .side-cards {
@@ -40,21 +48,8 @@ h1 {
   flex-direction: column;
 }
 
-.day-card {
-  margin: 0.5em;
-}
+/* -------- Main card styles ---------  */
 
-.main-card {
-  /* makes the main card as height as the side cards */
-  min-height: calc(100% - 1em);
-  min-width: 500px;
-  margin: 0.5em;
-}
-
-.card {
-  max-width: 500px;
-  /* margin: 80px auto; */
-}
 .card-footer .card-header {
   background-color: "#FFF";
 }
@@ -95,8 +90,21 @@ h1 {
 #country-id {
   display: none;
 }
+/* -------- End main card styles ---------  */
 
-/* -------------------responsiveness ------------------------------*/
+/* -------- Side card styles ---------  */
+.day-card {
+  margin-bottom: 1em;
+  box-shadow: 3px 3px 1px darkgrey;
+}
+
+.descrip-day {
+  font-weight: bold;
+  font-style: italic;
+}
+/* -------- End side card styles ---------  */
+
+/* -------------------RESPONSIVENESS ------------------------------*/
 @media screen and (max-width: 1250px) {
   .all-cards {
     display: flex;
@@ -107,24 +115,51 @@ h1 {
   }
 
   .side-cards {
-    margin-top:0;
-    margin-left:20vh;
-    /* margin: 0 5vh 10vh 20vh; */
+    margin-top: 0;
+    margin-left: 20vh;
     display: flex;
     flex-direction: column;
-    min-width: 400px;
+  }
+  .day-card {
+    width: 500px;
   }
 }
 
-@media screen and (max-width: 523px) {
-  h1 {
-    font-size: 1.8em;
+@media screen and (max-width: 905px) {
+  /* as the screen becomes smaller
+  the left margin adjust to leave the
+   cards in the center of the page */
+  .main-card-parent {
+    margin-left: calc(50% - 250px);
+  }
+  .side-cards {
+    margin-left: calc(50% - 250px);
+    min-width: 304.5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main-card-parent, .side-cards {
+    margin-left: 32px;
   }
   .main-card {
     /*16 for each site*/
-    max-width: calc(100% - 32px);
+    width: calc(100% - 32px);
     overflow: hidden;
-    margin-top: 16px;
+    margin-top: 5px;
+  }
+
+  .day-card {
+    width: calc(100% - 32px);
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .main-card {
+    min-width: 304.5px;
+  }
+  h1 {
+    font-size: 1.8em;
   }
 
   #local-date::before {

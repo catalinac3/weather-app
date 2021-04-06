@@ -131,15 +131,18 @@ h1 {
    cards in the center of the page */
   .main-card-parent {
     margin-left: calc(50% - 250px);
+    margin-right:  calc(50% - 250px);
   }
   .side-cards {
     margin-left: calc(50% - 250px);
+    margin-right:  calc(50% - 250px);
     min-width: 304.5px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .main-card-parent, .side-cards {
+  .main-card-parent,
+  .side-cards {
     margin-left: 32px;
   }
   .main-card {
@@ -147,6 +150,7 @@ h1 {
     width: calc(100% - 32px);
     overflow: hidden;
     margin-top: 5px;
+    min-width: 304.5px;
   }
 
   .day-card {
@@ -155,9 +159,6 @@ h1 {
 }
 
 @media screen and (max-width: 460px) {
-  .main-card {
-    min-width: 304.5px;
-  }
   h1 {
     font-size: 1.8em;
   }
@@ -176,5 +177,14 @@ h1 {
 
   #country-id {
     display: inline;
+  }
+}
+
+/* at such small screens the card has a fixed width again
+and margins can be adjusted accordingly*/
+@media screen and (max-width: 368px) {
+  .main-card-parent,
+  .side-cards {
+    margin-left: calc(50% - 152.25px);
   }
 }

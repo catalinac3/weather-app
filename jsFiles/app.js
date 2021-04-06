@@ -48,6 +48,7 @@ form.addEventListener("submit", search);
 
 //------------FETCHING CURRENT WEATHER DATA FROM OPEN WEATHER API---------------------------
 /**
+ * the function also calls fetchForcastData for the daily forecast
  * @param {string} apiUrl - url
  * @param {boolean} searchCity - default value is false, true when the fetchData
  * is called from the search function.
@@ -68,10 +69,11 @@ function fetchData(apiUrl, searchCity = false) {
       }
       return response.json();
     })
+
     // data --> Promise object represents the eventual completion (or failure)
     // of an asynchronous operation and its resulting value.
     .then((data) => {
-      //console.log(data);
+      console.log(data);
       // when the object has key, value pairs, like data.main
       // properties can be store: const {property} = object
       // for easy access, long form: data.main.property, this is call destructuring.
@@ -87,11 +89,18 @@ function fetchData(apiUrl, searchCity = false) {
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
       skyColor(sunrise, sunset, offsetTime);
       dayProgressBar(sunrise, sunset, offsetTime);
+
+      // Apicall for daily forecast
+      const { lat, lon } = data.coord;
+      const apiForecastUrl = `${apiRootUrl}onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&appid=${KEY}&units=metric`;
+      fetchForcastData(apiForecastUrl);
+
       if (searchCity) {
         searchLocationTimeElement.innerHTML = timeConversion(
           currentDateUserLocation,
           offsetTime
         );
+        imageHouse.src = "img/city.png";
       }
       countryIdElement.innerHTML = country;
       countryNameElement.innerHTML = countryCodeConversion(country);
@@ -113,14 +122,16 @@ function fetchData(apiUrl, searchCity = false) {
     });
 }
 
-
-
+/**
+ * fetch data from forecast
+ * @param {string} apiForecastUrl - url
+ */
 function fetchForcastData(apiForecastUrl) {
   fetch(apiForecastUrl)
     .then((response) => response.json())
     .then((data) => {
-      console.log("data from forecast");
-      console.log(data);
+      //console.log("data from forecast");
+      //console.log(data);
       const days = [1, 2, 3];
       days.forEach((elem) => {
         document.querySelector(

@@ -10,9 +10,6 @@ function displayWeatherUserLocation(pos) {
   const longitude = pos.coords.longitude.toFixed(2);
   const apiUrl = `${apiRootUrl}weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
   fetchData(apiUrl);
-  // Apicall for daily forecast
-  const apiForecastUrl = `${apiRootUrl}onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly&appid=${KEY}&units=metric`;
-  fetchForcastData(apiForecastUrl);
 }
 
 /**
@@ -41,7 +38,7 @@ function search(event) {
 function dateTimeDisplay(date) {
   const dateToday = `${date.getDate()}/${
     date.getMonth() + 1
-  }/${date.getFullYear()}`;
+  }/${date.getFullYear()} -`;
 
   const time = formatTime(date);
   localDateElement.innerHTML = dateToday;
@@ -98,6 +95,7 @@ function handleErrorGeo(error) {
     const randomCity = cities[Math.floor(Math.random() * cities.length)];
     const api = `${apiRootUrl}weather?q=${randomCity}&appid=${KEY}&units=metric`;
     fetchData(api);
+    imageHouse.src = "img/city.png";
   } else {
     alertError(error);
   }

@@ -1,36 +1,36 @@
 # Weather-app
 
-- It is a web site that displays the weather at the user's location. 
-- Additionally you can search the weather of another city.<br>
+- It is a web site that displays the weather at the user's location and a weather forecast of the next 3 days.
+- You can search the weather of another city.<br>
 - The design is responsive works for mobile and desktop.<br>
-- The app uses real weather data from the OpenWeather Api, and animated icons from amCharts.<br><br>
+- The app uses real weather data from the OpenWeather Api, and animated icons from amCharts.
+- background img (house & city) in the main card is own design.
+  <br><br>
 
 The following information displays in more detail the different resources used on the Weather app.<br><br>
-
 
 ### Weather data:
 
 The data for this web page is collected from the <b>OpenWeather API</b> - Current weather and forecast - free plan. <br>
 When the web page is loaded. The data is received in a json file.
 
-| Data                | API Response                | units (API response)        |
-| ------------------- | --------------------------- | --------------------------- |
-| temperature         | data.main.temp              | ºC                          |
-| temp. feels like    | data.main.feels_like        | ºC                          |
-| humidity            | data.main.humidity          | %                           |
-| time - sunrise      | data.sys.sunrise            | unix, UTC<sup>1</sup>       |
-| time - sunset       | data.sys.sunset             | unix, UTC                   |
-| time offset         | data.timezone               | shift in seconds from UTC   |
-| country name        | data.sys.country            | code                        |
-| city name           | data.name                   | string                      |
-| precipitation       | data.rain.1h                | mm (last hour) <sup>2</sup> |
-| weather description | data.weather[0].description | string                      |
-| icon                | data.weather[0].icon        | name png file               |
-| Wind speed          | data.wind.speed             | m/s                         |
+| Data                | API Response                | units (API response)      |
+| ------------------- | --------------------------- | ------------------------- |
+| temperature         | data.main.temp              | ºC                        |
+| temp. feels like    | data.main.feels_like        | ºC                        |
+| humidity            | data.main.humidity          | %                         |
+| time - sunrise      | data.sys.sunrise            | unix, UTC<sup>1</sup>     |
+| time - sunset       | data.sys.sunset             | unix, UTC                 |
+| time offset         | data.timezone               | shift in seconds from UTC |
+| country name        | data.sys.country            | code                      |
+| city name           | data.name                   | string                    |
+| precipitation       | data.rain.1h                | mm (last hour)            |
+| weather description | data.weather[0].description | string                    |
+| icon                | data.weather[0].icon        | name png file             |
+| Wind speed          | data.wind.speed             | m/s                       |
 
 https://openweathermap.org/ <br><br>
 <sup>1</sup> The unix time is the number of seconds that have elapsed since the Unix epoch; the Unix epoch is 00:00:00 UTC on 1 January 1970. https://en.wikipedia.org/wiki/Unix_time <br>
-<sup>2</sup> Rain gauges measure the precipitation in millimetres in height collected on an square meter during a period of time. https://en.wikipedia.org/wiki/Rain_gauge <br>
 
 The object isoCountries, with country names and codes was copied from https://gist.github.com/maephisto/9228207
 
@@ -55,4 +55,5 @@ https://openweathermap.org/weather-conditions.
 In icons i.e. 11d, 11n, d=day, n=night.
 
 ### Background colors:
+
 10 linear gradients where taken from https://codepen.io/billyysea/pen/whjbK to make the animation of the sky colors on the app.

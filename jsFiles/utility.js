@@ -38,7 +38,7 @@ function search(event) {
 function dateTimeDisplay(date) {
   const dateToday = `${date.getDate()}/${
     date.getMonth() + 1
-  }/${date.getFullYear()}`;
+  }/${date.getFullYear()} -`;
 
   const time = formatTime(date);
   localDateElement.innerHTML = dateToday;
@@ -95,6 +95,7 @@ function handleErrorGeo(error) {
     const randomCity = cities[Math.floor(Math.random() * cities.length)];
     const api = `${apiRootUrl}weather?q=${randomCity}&appid=${KEY}&units=metric`;
     fetchData(api);
+    imageHouse.src = "img/city.png";
   } else {
     alertError(error);
   }

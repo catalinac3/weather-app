@@ -46,8 +46,9 @@ navigator.geolocation.getCurrentPosition(
 form.addEventListener("submit", search);
 // submit event works by pressing the button or pressing enter after making an input!
 
-//------------FETCHING WEATHER DATA FROM OPEN WEATHER API---------------------------
+//------------FETCHING CURRENT WEATHER DATA FROM OPEN WEATHER API---------------------------
 /**
+ * the function also calls fetchForcastData for the daily forecast
  * @param {string} apiUrl - url
  * @param {boolean} searchCity - default value is false, true when the fetchData
  * is called from the search function.
@@ -68,6 +69,7 @@ function fetchData(apiUrl, searchCity = false) {
       }
       return response.json();
     })
+
     // data --> Promise object represents the eventual completion (or failure)
     // of an asynchronous operation and its resulting value.
     .then((data) => {
@@ -87,11 +89,18 @@ function fetchData(apiUrl, searchCity = false) {
       sunsetTime.innerHTML = timeConversion(sunset, offsetTime);
       skyColor(sunrise, sunset, offsetTime);
       dayProgressBar(sunrise, sunset, offsetTime);
+
+      // Apicall for daily forecast
+      const { lat, lon } = data.coord;
+      const apiForecastUrl = `${apiRootUrl}onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&appid=${KEY}&units=metric`;
+      fetchForcastData(apiForecastUrl);
+
       if (searchCity) {
         searchLocationTimeElement.innerHTML = timeConversion(
           currentDateUserLocation,
           offsetTime
         );
+        imageHouse.src = "img/city.png";
       }
       countryIdElement.innerHTML = country;
       countryNameElement.innerHTML = countryCodeConversion(country);
@@ -110,5 +119,29 @@ function fetchData(apiUrl, searchCity = false) {
     .catch((error) => {
       console.log(error);
       alertError(error);
+    });
+}
+
+/**
+ * fetch data from forecast
+ * @param {string} apiForecastUrl - url
+ */
+function fetchForcastData(apiForecastUrl) {
+  fetch(apiForecastUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      //console.log("data from forecast");
+      //console.log(data);
+      const days = [1, 2, 3];
+      days.forEach((elem) => {
+        document.querySelector(
+          `#temp-day-${elem}`
+        ).innerHTML = `${data.daily[elem].temp.day}°C`;
+        document.querySelector(`#descrip-day-${elem}`).innerHTML =
+          data.daily[elem].weather[0].description;
+        document.querySelector(`#icon-day-${elem}`).src = getIcon(
+          data.daily[elem].weather[0].icon
+        );
+      });
     });
 }

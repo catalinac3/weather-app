@@ -123,7 +123,7 @@ function fetchData(apiUrl, searchCity = false) {
 }
 
 /**
- * fetch data from forecast
+ * fetch data for daily forecast
  * @param {string} apiForecastUrl - url
  */
 function fetchForcastData(apiForecastUrl) {

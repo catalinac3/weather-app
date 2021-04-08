@@ -131,11 +131,12 @@ h1 {
    cards in the center of the page */
   .main-card-parent {
     margin-left: calc(50% - 250px);
-    margin-right:  calc(50% - 250px);
+    margin-right: calc(50% - 250px);
+    margin-top: 32px;
   }
   .side-cards {
     margin-left: calc(50% - 250px);
-    margin-right:  calc(50% - 250px);
+    margin-right: calc(50% - 250px);
     min-width: 304.5px;
   }
 }
@@ -144,17 +145,16 @@ h1 {
   .main-card-parent,
   .side-cards {
     margin-left: 32px;
+    margin-right: 32px;
+    max-width: none;
   }
   .main-card {
-    /*16 for each site*/
-    width: calc(100% - 32px);
+    width: 100%;
     overflow: hidden;
     margin-top: 5px;
-    min-width: 304.5px;
   }
-
   .day-card {
-    width: calc(100% - 32px);
+    width: 100%;
   }
 }
 

@@ -4,7 +4,7 @@
 - You can search the weather of another city.<br>
 - The design is responsive works for mobile and desktop.<br>
 - The app uses real weather data from the OpenWeather Api, and animated icons from amCharts.
-- background img (house & city) in the main card is own design.
+- background img (house & city) in the main card are own design.
   <br><br>
 
 The following information displays in more detail the different resources used on the Weather app.<br><br>

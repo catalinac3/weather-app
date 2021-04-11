@@ -134,9 +134,9 @@ function fetchForcastData(apiForecastUrl) {
       //console.log(data);
       const days = [1, 2, 3];
       days.forEach((elem) => {
-        document.querySelector(
-          `#temp-day-${elem}`
-        ).innerHTML = `${data.daily[elem].temp.day}°C`;
+        document.querySelector(`#temp-day-${elem}`).innerHTML = `${data.daily[
+          elem
+        ].temp.day.toFixed(1)}°C`;
         document.querySelector(`#descrip-day-${elem}`).innerHTML =
           data.daily[elem].weather[0].description;
         document.querySelector(`#icon-day-${elem}`).src = getIcon(
